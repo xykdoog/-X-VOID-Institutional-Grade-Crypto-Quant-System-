@@ -1,9 +1,9 @@
-# 🌌 X-VOID (WJ-BOT): The High-Frequency Sovereign Quant Protocol
+# 🌌 X-VOID: The High-Frequency Sovereign Quant Protocol
 
 [![SMC v4.5](https://img.shields.io/badge/SMC_Protocol-v4.5_Council-red.svg?style=for-the-badge)](#)
 [![HFT Engine](https://img.shields.io/badge/Execution-Zero--Latency_Decoupled-green.svg?style=for-the-badge)](#)
 [![Red Team Certified](https://img.shields.io/badge/Security-Red_Team_Audited-blueviolet.svg?style=for-the-badge)](#)
-[![Kelly Optimized](https://img.shields.io/badge/Positioning-Dynamic_Kelly_Criterion-yellow.svg?style=for-the-badge)](#)
+[![Python 3.11+](https://img.shields.io/badge/Python-3.11+-blue.svg?style=for-the-badge)](#)
 
 > **"If you are not the predator, you are the liquidity."**
 > 
@@ -11,83 +11,59 @@
 
 ---
 
-## 🏛️ 宏观架构：工业级全链路闭环 (Fortress Architecture)
+## 🏛️ 核心架构：工业级全链路闭环 (The Fortress)
 
 X-VOID 的设计哲学是 **物理隔离、零和博弈、绝对防御**。
 
-### 1. ⚡ 异步多进程计算核心 (Distributed Execution)
+### 1. ⚡ 异步多进程计算核心 (Computation Decoupling)
 传统机器人死于 Python 的 GIL 锁，X-VOID 诞生于对并发的极致压榨：
-* **计算解耦**：通过 `multiprocessing.Process` 物理隔离信号计算与订单执行。当指标进程在实时解析 800 根 K 线的 Pandas 矩阵时，执行引擎在以微秒级速度刷新 WebSocket 深度流。
-* **Ghost-to-Metal 路由**：内置物理级 `SANDBOX` 隔离装饰器，在字节码层面拦截 API 溢出，确保模拟环境的绝对纯度。
+* **解耦执行**：通过 `multiprocessing.Process` 物理隔离信号计算与订单执行。当独立进程在秒级解析 Pandas 矩阵时，主进程在以微秒级速度分发原子化订单。
+* **物理隔离锁**：内置 `@_ensure_live_mode` 装饰器，在字节码层面物理拦截 `SANDBOX` 环境下的实盘 API 溢出。
 
 ### 2. 🛡️ 战地风控防线 (Institutional Risk Perimeter)
-* **2% 铁律 (Non-Negotiable SL)**：系统底层逻辑硬锁死。单笔风险溢出 2% 资本总额时，风控官拥有最高优先级的“一票平仓权”。
-* **三级 API 熔断系统**：基于滑动窗口的权重监控（70% 减速、88% 物理断路），在市场插针导致的 API 洪水中提供物理级保护。
-* **原子化事务回滚 (Rollback Protocol)**：主单与止损单封装为单次 API 原子包。若止损挂单失败，系统立即执行“战地回滚”，拒绝任何形式的无保护裸奔。
+* **2% 铁律 (Non-Negotiable SL)**：系统底层风控硬锁死。任何单笔交易风险若溢出本金 2%（MAX_SINGLE_RISK），风控官拥有最高优先级的“一票平仓权”。
+* **原子化事务 (Rollback Protocol)**：主单与止损单封装为单次批量提交。若挂单不完整，系统立即执行“战地平仓回滚”并记录死信队列（DLQ），拒绝任何形式的无保护头寸裸奔。
 
 ---
 
 ## 🚀 降维打击：全因子狩猎系统 (Factor Supremacy)
 
-### 🩸 订单流与微观结构 (Order Flow Autopsy)
-* **CVD (Cumulative Volume Delta) 底层透视**：通过解析主动买卖盘的累积背离，在价格启动前预判机构的吸筹与派发陷阱。
-* **L2 OBI (Order Book Imbalance) 盘口审计**：实时审计买卖盘前 20 档深度。当买单强度超过阈值时，自动识别“机构冰山支撑”，开启 Ghost Maker 挂单模式。
-* **SMC Smart Money Lens**：
-    * **POC (Point of Control)**：识别 100 周期内成交量最密集的“地心价格”。
-    * **FVG (Fair Value Gap)**：捕捉机构暴力拉升留下的失衡区作为磁铁回补点。
-    * **Liquidity Sweep**：利用 20 周期高低点扫损算法，专吃散户止损盘。
+### 🩸 订单流透视 (Order Flow Autopsy)
+* **CVD (Cumulative Volume Delta)**：透视主动买卖盘累积偏差，在价格启动前预判机构吸筹/派发陷阱。
+* **L2 OBI (Order Book Imbalance)**：毫秒级审计盘口前 20 档深度。当买盘强度 > 卖盘 2.6 倍时，自动识别“机构冰山支撑”。
+* **Smart Money Lens**：集成 POC 成交量控制点、FVG 价值缺口与 Liquidity Sweep (扫损识别) 算法。
 
-### 📈 动态进化因子 (Dynamic Kelly Scaling)
-* **凯利公式自适应 (Kelly Criterion)**：拒绝固定仓位。系统基于最近 30 笔实盘表现的动态胜率 $W$ 与盈亏比 $R$，利用 $f^* = \frac{WR - (1-W)}{R}$ 实时优化资本配比。
+### 📈 动态进化因子 (Dynamic Positioning)
+* **动态凯利公式**：拒绝固定仓位。基于最近 30 笔实盘表现的动态胜率 $W$ 与盈亏比 $R$，自动计算最优下注比例。
 * **ATR 波动率缩放**：仓位与市场噪声成反比，确保账户净值曲线（Equity Curve）实现极低波动的复利增长。
 
 ---
 
-## 🧠 AI Sovereign: 众神议会决策中枢 (Council of Gods)
+## 🧠 AI Sovereign: 众神议会 (Council of Gods)
 
 **X-VOID 不再依赖死板的 if-else，它拥有自己的“元认知”。**
 
 ### 三位一体三核联动架构
-1.  **DeepSeek-R1 (逻辑参谋长)**：负责 15m/1h 周期的逻辑链深度推演。
-2.  **Claude 3.5 Sonnet (最高统帅)**：执行“铁腕审计”，纠正 R1 的决策偏差，下达最终指令。
-3.  **Gemini 3 Pro (全知视觉官)**：通过视觉神经网络，实时扫描 K 线形态，识别算法无法描述的巨鲸足迹。
-
-### 宏观天气路由 (Regime Switching)
-AI 统帅根据 **全网多空比**、**百万级清算流** 及 **VIX 波动率分位** 实时调度模式：
-* **⚡ SCALPER (狂战士)**：低波动下开启 OBI 盘口冰山对冲。
-* **🔥 AGGRESSIVE (爆破手)**：Squeeze 点火时双擎驱动，抓取日内主升浪。
-* **🛡️ CONSERVATIVE (核潜艇)**：VIX 爆表时进入极度防御，执行 1d 威科夫探底。
-
----
-
-## 📊 X-VOID 与普通机器人的残酷对比
-
-| 特性 | 普通交易机器人 (Generic Bots) | X-VOID Sovereign Protocol |
-| :--- | :--- | :--- |
-| **执行架构** | 单线程同步阻塞 | **异步多进程解耦计算与执行** |
-| **风控逻辑** | 简单的百分比止损 | **2% 风险硬锁 + 三阶段动态 TSL** |
-| **数据源** | 仅 K 线 OHLCV 数据 | **CVD 订单流 + L2 盘口审计 + 清算流** |
-| **下单策略** | 粗暴市价成交 | **VWAP 滑点审计 + Ghost Maker** |
-| **决策智能** | 固定技术指标 | **三核 AI 逻辑对账 + 视觉形态审计** |
-| **资金管理** | 固定本金 | **基于 30 笔样本的动态凯利配资** |
+1. **DeepSeek-R1 (逻辑参谋)**：负责针对 15m/1h 周期的逻辑链深度推演。
+2. **Claude 3.5 Sonnet (最高统帅)**：执行“铁腕审计”，纠正逻辑幻觉，直接下达调参 `###COMMAND###`。
+3. **Gemini 3 Pro (全知视觉官)**：通过视觉神经网络，实时扫描 4h/1d K 线形态，进行 SMC 结构对账。
 
 ---
 
 ## 🛠️ 点火序列 (Ignition Sequence)
 
-1.  **环境封印**：建议部署在具备低延迟链路的 AWS Tokyo/Singapore 节点。
-2.  **密钥注入**：在 `.env` 中填入 API 凭证。
-3.  **沙盒演习**：系统默认以 `SANDBOX` 模式点火。
+1. **配置注入**：在 `.env` 中填入你的作战权限。
+2. **动态对账**：启动后，系统自动同步 `BENCHMARK_CASH` 至交易所真实余额。
+3. **沙盒演习**：系统默认以 `SANDBOX` 模式点火。
 
 ```bash
 # 安装工业级依赖
 pip install -r requirements.txt
 
 
+⚠️ 免责声明 (Disclaimer)
+量化交易具有极高风险。本系统所涉及的任何参数（包括但不限于 2% 风险上限、凯利公式配置）仅为技术展示，不构成投资建议。
+ 请在完全理解代码逻辑后方可切换至 REAL 模式。
+
 # 开启收割之旅
 python main.py
-免责声明 (Disclaimer)
-量化交易具有极高风险。本系统所涉及的任何参数（包括但不限于 2% 风险上限）仅为技术展示，不构成投资建议。不完美，那不得亏死。 请在完全理解代码逻辑后方可切换至 REAL 模式。
-
-📜 开源协议 (License)
-本项目基于 MIT License 开源。
