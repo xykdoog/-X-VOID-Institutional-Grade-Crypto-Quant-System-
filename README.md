@@ -83,5 +83,11 @@ AI 统帅根据 **全网多空比**、**百万级清算流** 及 **VIX 波动率
 # 安装工业级依赖
 pip install -r requirements.txt
 
+
 # 开启收割之旅
 python main.py
+免责声明 (Disclaimer)
+量化交易具有极高风险。本系统所涉及的任何参数（包括但不限于 2% 风险上限）仅为技术展示，不构成投资建议。不完美，那不得亏死。 请在完全理解代码逻辑后方可切换至 REAL 模式。
+
+📜 开源协议 (License)
+本项目基于 MIT License 开源。
