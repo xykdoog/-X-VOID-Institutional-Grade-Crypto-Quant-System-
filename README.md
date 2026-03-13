@@ -1,63 +1,75 @@
-🚀 X-VOID | 2026 终极加密量化中枢 (The God's Eye Commander)
+🌌 X-VOID: High-Frequency Meta-Strategy Orchestrator
+X-VOID (WJ-BOT) 不仅仅是一个交易机器人。它是一套基于 多进程解耦架构 (Multi-Process Decoupling) 的工业级量化执行系统，集成了 CVD 订单流分析、L2 盘口审计、凯利公式动态配资 以及 三核 AI 战略调度。它为在高波动性加密货币市场中寻求“非对称交易优势”而生。
 
-“当散户还在纠结指标金叉时，真正的猎人早已接入了神经网络。”X-VOID 绝非平庸的交易脚本，它是为大模型时代锻造的工业级量化 Agent。
+🏛️ 系统架构 (System Architecture)
+X-VOID 采用了极致的生产力设计，彻底解决了 Python 在高频场景下的 GIL 性能瓶颈：
 
-我们彻底抛弃了滞后的零售指标，将 SMC (聪明钱概念) 与 多模态 AI 视觉 深度集成，打造出具备自主决策灵魂的“数字操盘手”。
+计算与执行分离 (Compute/IO Decoupling)：核心引擎通过 multiprocessing.Process 启动独立计算进程，实时处理复杂的 Pandas 指标运算，主进程仅负责轻量级 WebSocket 监听与原子化订单分发。
 
-它严格遵循专业机构的狩猎逻辑：识别结构 -> 视觉审计 -> 众神议会投票 -> 自动执行。
+物理级环境隔离 (Physical Sandbox Isolation)：内置 @_ensure_live_mode 装饰器，在字节码层面物理拦截 SANDBOX 模式下的所有实盘 API 调用，确保资金绝对安全。
 
-🏛️ 核心技术支柱跨周期神经视觉合成 (Multimodal Vision)：系统自动捕获 MTF 多周期 K 线张量，通过 Gemini 3 识别肉眼可见的 SMC 结构（BOS/CHoCH）与流动性陷阱，利用 AI 直觉弥补技术指标的滞后性。“众神议会”三元决策架构 (Triple-AI Council)：内置满血版 AI 大脑。
+API 权重智能守卫 (Weight Sentry)：三级熔断机制（70% 预警减速、88% 强制断路、5秒物理冷却），确保在极端波动行情下不会因触发交易所限流而导致仓位失控。
 
-R1 参谋负责 24/7 链式推理逻辑；Claude 统帅执行最终风险评估与决策对齐；Gemini 视觉完成形态学最后一道防线。DVAD-Matrix 动态波动率自适应防御矩阵：抛弃静态止损。
+🚀 核心技术栈 (Core Technologies)
+1. 🩸 降维打击的量化因子 (Quant Factors)
+CVD (Cumulative Volume Delta)：透视主动买卖盘的累积偏差，识别机构吸筹与派发的真实意图。
 
-系统实施 3 阶非对称风险缓释方案，根据市场瞬时波动率 $\sigma$ 自动调整防御边界。配合凯利公式 (Kelly Criterion) 动态利润抽离，确保资本在极端行情下的绝对安全。
+L2 OBI (Order Book Imbalance)：实时审计订单簿前 20 档深度，计算盘口失衡比率，精准识别机构冰山单。
 
-ANCC 异步神经指挥中心：基于事件驱动的 Telegram Inline 交互终端。
+Smart Money Lens：集成 POC (成交量控制点)、FVG (合理价值缺口) 与 Liquidity Sweep (流动性猎杀) 算法，捕捉庄家留下的物理足迹。
 
-支持原地原子级刷新与参数热注入技术，无需停机即可实时重构交易引擎的逻辑内核。工业级多进程解耦架构：计算与 IO 彻底分离。
+2. 🛡️ 严苛的机构级风控 (Risk Management)
+2% 风险金律：系统强制锁定单笔交易最大本金损失上限为 2% (MAX_SINGLE_RISK)，任何策略无权逾越。
 
-基于 multiprocessing.Manager 共享内存总线，确保 WebSocket 毫秒级行情流与 AI 决策流的高效协同。
+凯利公式动态配资 (Kelly Criterion)：基于最近 30 笔交易的盈亏比与胜率动态调整仓位，实现复利增长的最优路径。
 
-🪐 具备“视觉审计”能力的工业级 SMC 量化交易 Agent
+三阶段动态止损 (Three-Stage TSL)：从“初始护盾”到“风险减半”，再到“智能保本”与“TSL 收割”，确保每一分利润都受到物理级保护。
 
-"If you are still trading EMAs manually in 2026, you are the exit liquidity."
+3. ⚡ 原子化交易执行 (Execution Algo)
+Atomic Transactions：利用 Binance 批量下单 API，将主单与止损单封装为原子包提交，解决“开仓易、止损难”的行业痛点。
 
-X-VOID / WJ-BOT 不仅仅是一个量化脚本，它是一个深度整合了 Smart Money Concepts (SMC) 逻辑与 多模态 AI 视觉 的全自动指挥官。它彻底抛弃了滞后的传统指标，模仿职业交易员的操盘流程：识别结构 -> 视觉审计 -> 众神议会投票 -> 自动执行。
+VWAP 滑点审计：在入场前毫秒级模拟成交滑点，若 VWAP 偏离度超过万分之十 (10 bps)，系统将直接拒绝执行。
 
-🌟 核心杀手锏 (The "Wow" Factors)
-👁️ 1. 行业首创：MTF 视觉审计系统 (Visual Audit)
-多模态联动：自动捕获 15m/1h K 线截图，通过 Gemini 3 Flash Image 识别肉眼可见的斜率、SMC 陷阱与流动性区域。
+Ghost Maker (幽灵挂单)：SCALPER 模式专用 POST_ONLY 算法，强制 Maker 成交以获取手续费返还并降低冲击成本。
 
-拒绝致盲：通过 AI 视觉弥补技术指标（RSI/ADX）在极端行情下的滞后性，真正实现“像人一样看盘”。
+🧠 AI 统帅：众神议会 (Council of Gods)
+X-VOID 的灵魂在于凌驾于底层引擎之上的 intelligence_hub.py：
 
-🏛️ 2. “众神议会”三重 AI 决策架构 (Council of Gods)
-系统内置一个满血版 LLM 大脑，将决策权交给三个独立的人工智能模型：
+三位一体决策内核：
 
-🧠 R1 参谋：负责 24/7 的链式推理，深度拆解 BOS (结构突破) 与 CHoCH (性格改变)。
+DeepSeek-R1 (大脑)：负责极端行情下的逻辑链推演与多因子归因分析。
 
-⚖️ Claude 统帅：进行最终风险评估，过滤震荡洗盘，确保策略对齐。
+Claude 3.5 (统帅)：执行最终的铁腕审计，纠正逻辑幻觉，直接下达调参指令。
 
-👁️ Gemini 视觉：提供形态学的最后一道防线，确保不被机构的虚假影线欺骗。
+Gemini 3 Pro (全知之眼)：通过视觉神经网络实时扫描 4h/1d K线形态，进行 SMC (聪明的钱) 结构对账。
 
-⚙️ 3. 工业级多进程解耦架构 (Multi-Processing)
-计算与 IO 分离：基于 multiprocessing.Manager 共享内存，指标计算进程与主逻辑完全隔离，杜绝因网络延迟导致的行情跳变。
+宏观天气路由 (Regime Switching)：根据全网清算数据、大户多空比及波动率分位，自动调度“1m 狂战士”或“1d 核潜艇”进入战场。
 
-高频感知：WebSocket 毫秒级推送，子进程实时响应参数微调，确保指令秒级送达交易所。
+🛠️ 快速启动 (Quick Start)
+1. 克隆并安装
+Bash
+git clone https://github.com/your-username/X-VOID.git
+cd X-VOID
+pip install -r requirements.txt
+2. 环境变量配置
+创建 .env 文件并填入你的 API 凭证：
 
-🛡️ 4. 极致风控：3 阶冷血铠甲 (3-Stage Armor)
-无死角止损：内置凯利公式 (Kelly Criterion) 仓位管理。
+代码段
+BINANCE_API_KEY=your_key
+BINANCE_API_SECRET=your_secret
+TG_TOKEN=your_telegram_bot_token
+CLAUDE_API_KEY=your_anthropic_key
+3. 点火运行
+Bash
+python main.py
+系统将默认启动 SANDBOX (沙盒) 模式进行 0 风险模拟演习。
 
-动态追踪：达到 1.2x ATR 保护本金，1.8x ATR 强制保本，2.0x ATR 开启移动止盈。
+📊 战地复盘截图 (AI Visual Audit)
+图：AI 统帅利用视觉官对 15m 级别的假突破进行实时拦截审计。
 
-🏦 Anti-Rekt Vault：自动将合约利润划转至现货保险库，哪怕市场闪崩，你的盈利早已落袋为安。
+⚠️ 免责声明 (Disclaimer)
+量化交易具有极高风险。本系统所涉及的任何参数（包括但不限于 2% 单笔风险上限、凯利公式配置等）仅为技术实现展示，不构成任何投资建议。
+不完美，那不得亏死。 请在完全理解代码逻辑后方可切换至 REAL 模式。
 
-🎮 5. V7.0 沉浸式控制台 (Next-Gen UI)
-纯 Inline 交互：彻底告别刷屏。原地刷新消息，单条消息即是全功能控制台。
-
-对话式调参：点击按钮 -> 直接回复数字 -> 参数即刻生效
-📈 为什么选择 X-VOID？
-2026 年了，画线、看金叉已经是外行干的事了。
-X-VOID 让你从繁琐的盯盘中解脱出来。它不预测市场，它只负责在狗庄露出马脚时，配合 AI 视觉以最残忍的方式收割利润。
-
-🛡️ 免责声明 (Disclaimer)
-量化交易涉及高风险。本工具仅供技术研究与沙盒演习使用。作者不对任何实盘资金损失负责。
+📜 开源协议 (License)
+本项目基于 MIT 协议开源。
