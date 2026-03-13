@@ -54,11 +54,6 @@ pip install -r requirements.txt
 2. 环境变量配置
 创建 .env 文件并填入你的 API 凭证：
 
-代码段
-BINANCE_API_KEY=your_key
-BINANCE_API_SECRET=your_secret
-TG_TOKEN=your_telegram_bot_token
-CLAUDE_API_KEY=your_anthropic_key
 3. 点火运行
 Bash
 python main.py
