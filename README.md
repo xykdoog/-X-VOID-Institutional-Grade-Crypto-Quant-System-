@@ -80,9 +80,9 @@ X-VOID 的设计哲学是 **物理隔离、零和博弈、绝对防御**。
 pip install -r requirements.txt
 
 
-⚠️ 免责声明 (Disclaimer)
-量化交易具有极高风险。本系统所涉及的任何参数（包括但不限于 2% 风险上限、凯利公式配置）仅为技术展示，不构成投资建议。
- 请在完全理解代码逻辑后方可切换至 REAL 模式。
+⚠️ 开发者免责声明 (The Red-Pill Warning)
+"In the world of quant trading, being 99% perfect means being 100% dead."
 
+X-VOID 为了那 1% 的完美而生。本协议涉及的凯利公式、L2 审计及 AI 调度逻辑均为高频博弈工具，不构成任何财务建议。 请在完全理解代码逻辑后方可切换至 REAL 模式。
 # 开启收割之旅
 python main.py
