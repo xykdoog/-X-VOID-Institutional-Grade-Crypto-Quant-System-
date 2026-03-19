@@ -51,13 +51,8 @@ graph TD
     Redis --- Dashboard
     Redis -.-> WS
 
-## 🏗️ 核心架构图 (Core Architecture)
+```
 
-```mermaid
-graph TD
-    A[数据源] --> B[引擎]
-    B --> C[执行]
-12,架构隐患,网络 IO,异步 IO 混合阻塞风险在同步框架中混用 ThreadPoolExecutor 和协程。,行情暴走、多币种同时报警时，大语言模型的长轮询会导致事件循环锁死或僵死。,将所有 LLM 网络请求放入完全独立的进程或纯异步队列中处理。
 🌟 核心技术矩阵 (Core Technical Matrix)
 1. 🩸 极致的算法同源 (Zero-Drift Engine Parity)
 “回测即实盘，所见即所得。” 系统消除了量化交易中最致命的“环境不一致性”。
@@ -92,9 +87,11 @@ Stage 3 (利润收割)：锁定高位插针极值点（Highest/Lowest Price）�
 
 异步决策链路 (Agentic Multi-LLM Inference)：
 
-集成 Claude-3.5-Sonnet 负责长文本逻辑链推理，对宏观政经数据进行深度“天气预报”。
+集成 Claude-4.6-Sonnet/Opus 负责长文本逻辑链推理，对宏观政经数据进行深度“天气预报”。
 
-集成 DeepSeek-R1 执行极速的市场情绪审计，过滤由于链上虚假消息引发的短线信号。
+集成 Google Gemini 3.1 Pro：利用其超长上下文能力，负责扫描全网地缘政治研报，并对历史 K 线形态进行多模态视觉复盘。
+
+集成 DeepSeek-R1 PRO 执行极速的市场情绪审计，过滤由于链上虚假消息引发的短线信号。
 
 零延迟架构：LLM 推理运行在独立的异步工作线程中，绝不阻塞核心交易循环的心跳。
 
@@ -104,4 +101,52 @@ AI 会自动识别当前市场处于“单边、震荡、或极端恐慌”哪�
 
 根据识别结果，AI 会动态收缩或扩张策略边界：在高波动环境下自动撑大 ATR 止损倍数，在低迷期自动收紧 ADX 入场门槛，实现真正的“全天候自愈”。
 
+4. ⚔️ 自适应“幽灵”执行算法 (Ghost Execution & Order Chasing)
+“不留残仓，不计成本，只为吃满。” 针对高波动标的（SOL/PEPE 等）设计的极致执行层。
+
+智能追单协程 (Async Order Chasing)：系统在执行紧急信号时，不再使用低效的等待模式。若首笔 IOC (Immediate or Cancel) 订单未能全额成交，系统将瞬间启动追单协程，每隔 
+3 秒锚定买一/卖一盘口进行动态挂单重试，直至仓位完全填满。
+
+盘口流动性深度审计：在每一笔订单下达前，系统会对 L2 订单簿进行毫秒级扫描，计算 VWAP 真实滑点。若当前深度无法支撑目标仓位，系统会自动将订单拆分为多个微量原子单，防止引
+
+发盘口瞬间崩塌。
+
+5. 🏗️ 分布式实时状态总线 (High-Concurrency Redis Bus)
+“零延迟监控，断电级数据不坏金身。” * Redis Pub/Sub 信号流：核心交易引擎与 Web UI 之间彻底摒弃了传统的 HTTP 轮询模式，改用 Redis 发布/订阅机制。每一笔成交、每一个信号的闪烁都会以 < 5ms 的延迟直达你的指挥部仪表盘。
+
+Write-Ahead Logging (WAL) 账本同步：参考了数据库级别的日志保护逻辑。系统在更新沙盒余额或实盘持仓的瞬间，会同时向 Redis 和物理磁盘执行 fsync 强制落盘，确保即便服务器意外宕机，重启后的“利滚利”对账精度依然能达到 10^-8。
+
+
+🛠️ 快速启动 (Quick Start)
+
+环境配置 (Setup):
+
+Bash
+git clone https://github.com/xykdoog/-X-VOID-Institutional-Grade-Crypto-Quant-System-.git
+cd X-VOID-Omega
+pip install -r requirements.txt
+配置密钥 (Config):
+将 .env.example 重命名为 .env，并填入你的 API 密钥。
+
+运行 (Run):
+
+Bash
+python main.py  # 启动交易引擎 (Trading Engine)
+python dashboard.py # 启动 Web 监控面板 (Web Dashboard)
+
+📜 免责声明 (Disclaimer)
+
+量化交易存在极高风险。本系统仅供技术研究与沙盒演习使用，不构成任何投资建议。统帅提醒：在实盘运行前，请务必在模拟盘完成充足测试。
+
+⚖️ 强制性开源协议 (GPL-3.0 Copyleft Policy)
+[!CAUTION]
+声明：本项目采用 GNU GPL v3.0 协议授权。
+
+这是一份带有“强迫性回馈”性质的协议。 X-VOID Omega 的技术血统受此协议严格保护，所有使用者必须遵守：
+
+分发即开源：如果你修改了本系统的任何核心逻辑（如改写了信号算法 或风控模型）并向他人分发或提供服务，你必须以 GPL-3.0 协议无条件公开你修改后的全部源代码。
+
+拒绝闭源私吞：严禁将本系统剥离核心逻辑后包装成付费闭源软件。任何基于本项目的衍生品，其“自由度”必须与本项目完全一致。
+
+技术主权：我们欢迎商业使用，但任何试图利用本项目技术优势却拒绝回馈社区的行为，都将受到法律与开源社区的共同追责。
 
