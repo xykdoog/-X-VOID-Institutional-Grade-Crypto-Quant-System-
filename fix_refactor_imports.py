@@ -2,21 +2,27 @@ import os
 import re
 
 # 定义文件到目录的映射关系
-IMPORT_MAP = {
+IIMPORT_MAP = {
     # Core 
     'trading_engine': 'core', 'risk_manager': 'core', 'execution_algo': 'core',
     'enhanced_black_swan': 'core', 'position_isolation': 'core', 'enhanced_mtf_resonance': 'core',
     'correlation_engine': 'core', 'correlation_matrix': 'core', 'dlq_worker': 'core',
     'worker_logic': 'core', 'websocket_manager': 'core', 'api_weight_monitor': 'core',
-    'execution_quality_monitor': 'core', 'monitors': 'core',
+    'execution_quality_monitor': 'core', 'monitors': 'core', 'backtest_worker': 'core',
+    'human_override': 'core', 'websocket_queue_integration': 'core', 'web_api': 'core',
     # Agents
     'ai_analyst': 'agents', 'ai_analyst_validators': 'agents', 'llm_worker': 'agents',
     'intelligence_hub': 'agents', 'ai_emergency_control': 'agents',
-    # Bot (新)
+    # Bot
     'bot_callbacks': 'bot', 'bot_handlers': 'bot', 'bot_handlers_additions': 'bot',
+    # UI (新)
+    'dashboard': 'ui',
     # Utils
     'utils': 'utils', 'logger_setup': 'utils', 'redis_manager': 'utils',
-    'config_redis_functions': 'utils', 'network_config': 'utils', 'proxy_tunnel': 'utils'
+    'config_redis_functions': 'utils', 'network_config': 'utils', 'proxy_tunnel': 'utils',
+    'plot_equity': 'utils',
+    # Tests
+    'smc_signal_template': 'tests'
 }
 
 def fix_imports_in_file(file_path):
