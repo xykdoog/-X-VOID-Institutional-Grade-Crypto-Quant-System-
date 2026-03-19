@@ -1,0 +1,31 @@
+# === 1. 绝对机密：严禁上传 (Credentials) ===
+.env
+config.py
+api_secrets.json
+
+# === 2. 个人交易数据：严禁上传 (Private Data) ===
+# 账本、持仓与历史记录 
+sandbox_ledger.json
+trade_history.json
+trade_audit_logs.json
+simulated_ledger.csv
+dead_letter_queue.json
+active_positions.json
+bot_config.json
+user_sessions.json
+sentry_watchlist.json
+
+# 数据缓存文件夹
+data_cache/
+trade_audit_logs/
+
+# === 3. Python 运行时产生的垃圾 (Python Junk) ===
+__pycache__/
+*.py[cod]
+*$py.class
+
+# === 4. 系统与编辑器缓存 ===
+.DS_Store
+.vscode/
+.idea/
+venv/

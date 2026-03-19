@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>WJ-BOT COMMAND CENTER V8.0</title>
+    <style>
+        body { background-color: #0b0e14; color: #a9b1d6; font-family: 'Consolas', monospace; margin: 0; padding: 20px; }
+        .header { display: flex; justify-content: space-between; border-bottom: 2px solid #1f2335; padding-bottom: 10px; margin-bottom: 20px; }
+        .title { color: #7aa2f7; font-size: 24px; font-weight: bold; text-shadow: 0 0 10px rgba(122, 162, 247, 0.5); }
+        .status-bar { display: flex; gap: 15px; font-size: 16px; align-items: center; }
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .panel { background: #1a1b26; border: 1px solid #292e42; border-radius: 8px; padding: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .panel-title { color: #9ece6a; font-weight: bold; font-size: 16px; margin-bottom: 12px; border-bottom: 1px dashed #292e42; padding-bottom: 5px; }
+        .data-row { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 13px; align-items: center; }
+        .val { color: #fff; font-weight: bold; }
+        .val-green { color: #9ece6a; } .val-red { color: #f7768e; } .val-yellow { color: #e0af68; }
+        input, select { background: #0b0e14; color: #fff; border: 1px solid #414868; padding: 3px 5px; border-radius: 3px; font-family: inherit; font-size: 12px; }
+        input[type=number] { width: 55px; }
+        button { background: #2b2f36; color: #a9b1d6; border: 1px solid #414868; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-family: inherit; font-weight: bold; transition: 0.2s; width: 100%; margin-bottom: 6px; font-size: 12px; }
+        button:hover { background: #414868; color: #fff; }
+        .btn-nuke { background: #f7768e; color: #000; border-color: #f7768e; animation: pulse 2s infinite; }
+        .btn-sm { width: auto; padding: 3px 8px; margin: 0; font-size: 11px; }
+        .switch-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; font-size: 12px; cursor: pointer; padding: 3px 0; }
+        .switch-row:hover { color: #fff; }
+        .switch-indicator { font-size: 14px; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        th, td { text-align: left; padding: 6px; border-bottom: 1px solid #292e42; }
+        th { color: #7aa2f7; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(247,118,142,0.4); } 70% { box-shadow: 0 0 0 10px rgba(247,118,142,0); } 100% { box-shadow: 0 0 0 0 rgba(247,118,142,0); } }
+        hr.sep { border: 0; border-top: 1px solid #292e42; margin: 8px 0; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="title">WJ-BOT COMMAND CENTER V8.0</div>
+        <div class="status-bar">
+            <span id="st-mode">模式: 🔴 未知</span>
+            <span id="st-engine">引擎: 🔴 离线</span>
+            <span id="st-ai">AI: 🔒 锁定</span>
+            <span id="st-stats" style="font-size:12px; color:#565f89;"></span>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="panel">
+            <div class="panel-title">💰 战略资金池</div>
+            <div class="data-row"><span>沙盒余额 (SIM):</span> <span class="val val-green" id="v-sim-bal">$0.00</span></div>
+            <div class="data-row"><span>初始本金:</span> <span class="val" id="v-sim-init">$10000.00</span></div>
+            <div class="data-row"><span>高水位线 (HWM):</span> <span class="val" id="v-sim-hwm">$10000.00</span></div>
+            <div class="data-row"><span>保险库余额:</span> <span class="val" id="v-vault-bal">$0.00</span></div>
+            <hr class="sep">
+            <div class="data-row"><span>基准本金:</span> <span class="val" id="v-benchmark">$1800.00</span></div>
+            <div class="data-row"><span>风险敞口:</span> <span class="val" id="v-risk">0.0%</span></div>
+            <div class="data-row"><span>当前杠杆:</span> <span class="val" id="v-lev">20x</span></div>
+            <div class="data-row"><span>胜率:</span> <span class="val" id="v-winrate">0.0%</span></div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-title">🎛️ 引擎火力控制</div>
+            <div class="switch-row" onclick="toggleSwitch('BLACK_SWAN_DEFENSE')"><span>🛡️ 黑天鹅防御熔断</span> <span class="switch-indicator" id="sw-swan">❌</span></div>
+            <div class="switch-row" onclick="toggleSwitch('USE_KELLY_FORMULA')"><span>⚖️ 凯利公式动态配资</span> <span class="switch-indicator" id="sw-kelly">❌</span></div>
+            <div class="switch-row" onclick="toggleSwitch('MAD_DOG_MODE')"><span>🐺 疯狗模式</span> <span class="switch-indicator" id="sw-dog">❌</span></div>
+            <div class="switch-row" onclick="toggleSwitch('USE_VOLATILITY_SCALAR')"><span>📉 ATR波动率缩放</span> <span class="switch-indicator" id="sw-vol">❌</span></div>
+            <div class="switch-row" onclick="toggleSwitch('SPACE_LOCK_ENABLED')"><span>🔒 K线空间锁</span> <span class="switch-indicator" id="sw-space">❌</span></div>
+            <div class="switch-row" onclick="toggleSwitch('OBI_FILTER_ENABLED')"><span>🧊 L2盘口冰山拦截</span> <span class="switch-indicator" id="sw-obi">❌</span></div>
+            <div class="switch-row" onclick="toggleSwitch('RS_FILTER_ENABLED')"><span>🐉 大盘轮动强弱过滤</span> <span class="switch-indicator" id="sw-rs">❌</span></div>
+            <div class="switch-row" onclick="toggleSwitch('SML_BOOSTER_ENABLED')"><span>🚀 SML利润放大器</span> <span class="switch-indicator" id="sw-sml">❌</span></div>
+            <hr class="sep">
+            <div class="data-row"><span>策略模式:</span> <span class="val val-yellow" id="v-strategy">STANDARD</span></div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-title">⚠️ 战术指令执行</div>
+            <button onclick="cmd('toggle_engine')">▶️ 启动/停止 交易引擎</button>
+            <button onclick="cmd('toggle_ai')">🧠 切换 AI 满血接管</button>
+            <button onclick="cmd('toggle_auto_tune')">🤖 AI自动调参</button>
+            <button onclick="cmd('toggle_hedge')">🔀 对冲模式</button>
+            <button onclick="cmd('toggle_vault')">🏦 保险库开关</button>
+            <hr class="sep">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px;">
+                <button onclick="cmd('switch_sandbox')">🟡 沙盒模式</button>
+                <button onclick="cmd('switch_real')">🔴 实盘模式</button>
+            </div>
+            <button class="btn-nuke" onclick="if(confirm('⚠️ 此操作将市价平掉所有仓位！确认？')) cmd('emergency_close')">🚨 紧急核按钮 (一键全平)</button>
+        </div>
+
+        <div class="panel">
+            <div class="panel-title">⚙️ 实时参数调优</div>
+            <div class="data-row"><span>策略模式:</span>
+                <select id="sel-strategy" onchange="updateParam('STRATEGY_MODE', this.value)">
+                    <option value="STANDARD">STANDARD</option>
+                    <option value="CONSERVATIVE">CONSERVATIVE</option>
+                    <option value="AGGRESSIVE">AGGRESSIVE</option>
+                    <option value="SCALPER">SCALPER</option>
+                </select>
+            </div>
+            <div class="data-row"><span>杠杆:</span> <div><input type="number" id="in-lev" onchange="updateParam('LEVERAGE', this.value)"><span style="font-size:10px; color:#565f89;"> x</span></div></div>
+            <div class="data-row"><span>风险 (%):</span> <div><input type="number" step="0.1" id="in-risk" onchange="updateParam('RISK_RATIO', (this.value/100).toFixed(4))"><span style="font-size:10px; color:#565f89;"> %</span></div></div>
+            <div class="data-row"><span>基准本金:</span> <div><input type="number" step="100" id="in-benchmark" onchange="updateParam('BENCHMARK_CASH', this.value)"><span style="font-size:10px; color:#565f89;"> $</span></div></div>
+            <hr class="sep">
+            <div class="data-row"><span>ADX阈值:</span> <input type="number" id="in-adx" onchange="updateParam('ADX_THR', this.value)"></div>
+            <div class="data-row"><span>EMA趋势:</span> <input type="number" id="in-ema" onchange="updateParam('EMA_TREND', this.value)"></div>
+            <div class="data-row"><span>时间周期:</span>
+                <select id="sel-interval" onchange="updateParam('INTERVAL', this.value)">
+                    <option value="1m">1m</option><option value="3m">3m</option><option value="5m">5m</option>
+                    <option value="15m">15m</option><option value="30m">30m</option><option value="1h">1h</option><option value="4h">4h</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-title">🛡️ ATR 止损 & 疯狗参数</div>
+            <div class="data-row"><span>ATR周期:</span> <input type="number" id="in-atr-period" onchange="updateParam('ATR_PERIOD', this.value)"></div>
+            <div class="data-row"><span>ATR倍数:</span> <input type="number" step="0.1" id="in-atr-mult" onchange="updateParam('ATR_MULT', this.value)"></div>
+            <div class="data-row"><span>止损缓冲:</span> <input type="number" step="0.01" id="in-sl-buffer" onchange="updateParam('SL_BUFFER', this.value)"></div>
+            <hr class="sep">
+            <div class="data-row"><span>疯狗触发:</span> <input type="number" step="0.1" id="in-dog-trigger" onchange="updateParam('MAD_DOG_TRIGGER', this.value)"></div>
+            <div class="data-row"><span>疯狗倍率:</span> <input type="number" step="0.1" id="in-dog-boost" onchange="updateParam('MAD_DOG_BOOST', this.value)"></div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-title">🏦 Vault 管理</div>
+            <div class="data-row"><span>SIM 余额:</span> <span class="val" id="v-vault-sim">$0.00</span></div>
+            <div class="data-row"><span>SIM 高水位:</span> <span class="val" id="v-vault-hwm2">$0.00</span></div>
+            <div class="data-row"><span>SIM 初始:</span> <span class="val" id="v-vault-init2">$0.00</span></div>
+            <div class="data-row"><span>回撤:</span> <span class="val" id="v-vault-dd">0.00%</span></div>
+            <hr class="sep">
+            <button onclick="cmd('vault_emergency_reset')">🚨 Reset ($10,000)</button>
+            <button onclick="cmd('vault_sync_hwm')">🔄 Sync HWM</button>
+            <div class="data-row"><span>自定义:</span> <div><input type="number" step="100" id="in-custom-bal" style="width:70px;"><button class="btn-sm" onclick="updateParam('SIM_CURRENT_BALANCE', document.getElementById('in-custom-bal').value)">✏️</button></div></div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-title">💼 资产权重管理</div>
+            <div id="asset-list" style="max-height:150px; overflow-y:auto; margin-bottom:8px;"></div>
+            <hr class="sep">
+            <div style="display:flex; gap:5px;">
+                <input type="text" id="in-add-symbol" placeholder="币种 (如 BTC)" style="flex:1;">
+                <button class="btn-sm" onclick="addAsset()">➕</button>
+            </div>
+            <button onclick="balanceWeights()" style="margin-top:5px;">⚖️ 平均分配</button>
+        </div>
+
+        <div class="panel">
+            <div class="panel-title">🔭 价格哨所</div>
+            <div class="data-row"><span>状态:</span> <span class="val" id="v-sentry-status">❌ 停止</span></div>
+            <div class="data-row"><span>推送间隔:</span> <span class="val" id="v-sentry-interval">15分钟</span></div>
+            <div class="data-row"><span>频率:</span>
+                <select id="sel-sentry-freq" onchange="updateSentryFreq(this.value)">
+                    <option value="5">5分钟</option>
+                    <option value="15" selected>15分钟</option>
+                    <option value="60">1小时</option>
+                </select>
+            </div>
+            <div id="sentry-list" style="max-height:80px; overflow-y:auto; margin:8px 0;"></div>
+            <hr class="sep">
+            <button onclick="cmd('toggle_sentry')">🔭 启用/停用</button>
+            <div style="display:flex; gap:5px;">
+                <input type="text" id="in-sentry-symbol" placeholder="币种" style="flex:1;">
+                <button class="btn-sm" onclick="sentryAdd()">➕</button>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-title">📊 交易统计</div>
+            <div class="data-row"><span>总交易:</span> <span class="val" id="v-total-trades">0</span></div>
+            <div class="data-row"><span>胜率:</span> <span class="val" id="v-winrate2">0.0%</span></div>
+            <div class="data-row"><span>运行环境:</span> <span class="val" id="v-env">SANDBOX</span></div>
+            <div class="data-row"><span>DRY_RUN:</span> <span class="val" id="v-dryrun">✅</span></div>
+            <div class="data-row"><span>自动调参:</span> <span class="val" id="v-autotune">❌</span></div>
+            <div class="data-row"><span>对冲模式:</span> <span class="val" id="v-hedge">❌</span></div>
+            <div class="data-row"><span>保险库:</span> <span class="val" id="v-vault-en">❌</span></div>
+            <hr class="sep">
+            <button onclick="cmd('sync_positions')">⚖️ 同步仓位</button>
+        </div>
+
+        <div class="panel" style="grid-column: span 3;">
+            <div class="panel-title">📜 沙盒账单历史 (最近记录)</div>
+            <div id="bill-history" style="max-height: 200px; overflow-y: auto; font-size: 11px;"></div>
+        </div>
+
+        <div class="panel" style="grid-column: span 3;">
+            <div class="panel-title">⚔️ 当前交战区 (Active Positions)</div>
+            <table>
+                <thead><tr><th>标的</th><th>方向</th><th>数量</th><th>开仓均价</th><th>现价</th><th>浮动盈亏</th><th>止损线</th><th>操作</th></tr></thead>
+                <tbody id="pos-table"><tr><td colspan="8" style="text-align:center; color:#565f89;">暂无交战，处于静默潜伏状态...</td></tr></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const API = 'http://127.0.0.1:8989/api';
+        async function updateParam(key, value) {
+            try {
+                const res = await fetch(`${API}/update_param`, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({key, value:value.toString()})});
+                const r = await res.json();
+                if(r.status==='success') console.log(`✅ ${r.msg}`);
+            } catch(e) { console.error("❌ 参数注入失败", e); }
+        }
+        async function toggleSwitch(key) {
+            const sw = {swan:'BLACK_SWAN_DEFENSE',kelly:'USE_KELLY_FORMULA',dog:'MAD_DOG_MODE',vol:'USE_VOLATILITY_SCALAR',space:'SPACE_LOCK_ENABLED',obi:'OBI_FILTER_ENABLED',rs:'RS_FILTER_ENABLED',sml:'SML_BOOSTER_ENABLED'};
+            const id = Object.keys(sw).find(k=>sw[k]===key);
+            const el = document.getElementById('sw-'+id);
+            const cur = el.innerText.includes('✅')||el.innerText.includes('🔥');
+            await updateParam(key, !cur);
+            setTimeout(fetchState, 200);
+        }
+        async function cmd(action) { try { await fetch(`${API}/command/${action}`, {method:'POST'}); setTimeout(fetchState, 200); } catch(e) { console.error("❌", e); } }
+        async function addAsset() {
+            const sym = document.getElementById('in-add-symbol').value.trim().toUpperCase();
+            if(!sym) return;
+            await fetch(`${API}/asset/add`, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({symbol:sym, weight:0})});
+            document.getElementById('in-add-symbol').value = '';
+            setTimeout(fetchState, 200);
+        }
+        async function removeAsset(sym) { await fetch(`${API}/asset/remove`, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({symbol:sym})}); setTimeout(fetchState, 200); }
+        async function balanceWeights() { await fetch(`${API}/asset/balance`, {method:'POST'}); setTimeout(fetchState, 200); }
+        async function sentryAdd() {
+            const sym = document.getElementById('in-sentry-symbol').value.trim().toUpperCase();
+            if(!sym) return;
+            await fetch(`${API}/sentry/add`, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({symbol:sym})});
+            document.getElementById('in-sentry-symbol').value = '';
+            setTimeout(fetchState, 200);
+        }
+        async function sentryRemove(sym) { await fetch(`${API}/sentry/remove`, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({symbol:sym})}); setTimeout(fetchState, 200); }
+        async function posBreakeven(k) { await fetch(`${API}/position/${k}/breakeven`, {method:'POST'}); setTimeout(fetchState, 200); }
+        async function posClose(k) { if(!confirm('确认平仓？')) return; await fetch(`${API}/position/${k}/close`, {method:'POST'}); setTimeout(fetchState, 200); }
+
+        // 账单历史拉取
+        async function fetchBill() {
+            try {
+                const res = await fetch(`${API}/bill`);
+                const b = await res.json();
+                let bh = '';
+                b.history.reverse().forEach(t => {
+                    const isGain = t.amount > 0;
+                    bh += `<div class="data-row" style="border-bottom: 1px solid #292e42;">
+                        <span style="color:#565f89">${t.timestamp.split('T')[1].substring(0,8)}</span>
+                        <span style="flex:1; margin-left:10px">${t.reason}</span>
+                        <span class="${isGain?'val-green':'val-red'}">${isGain?'+':''}$${t.amount.toFixed(2)}</span>
+                    </div>`;
+                });
+                document.getElementById('bill-history').innerHTML = bh || '暂无账单记录';
+            } catch(e) {}
+        }
+
+        // 哨所频率更新
+        async function updateSentryFreq(v) {
+            await fetch(`${API}/sentry/interval`, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({key:'SENTRY_INTERVAL', value:v})});
+        }
+        async function fetchState() {
+            try {
+                const res = await fetch(`${API}/state`);
+                const d = await res.json();
+                document.getElementById('st-mode').innerHTML = `模式: ${d.running_mode==='SANDBOX'?'<span class="val-yellow">🟡 沙盒</span>':'<span class="val-red">🔴 实盘</span>'}`;
+                document.getElementById('st-engine').innerHTML = `引擎: ${d.engine_active?'<span class="val-green">🟢 运行</span>':'<span class="val-red">🔴 停止</span>'}`;
+                document.getElementById('st-ai').innerHTML = `AI: ${d.ai_autonomy?'<span class="val-green">🧠 接管</span>':'🔒 建议'}`;
+                document.getElementById('st-stats').innerText = `${d.total_trades}笔 | 胜率${d.win_rate.toFixed(1)}%`;
+                document.getElementById('v-sim-bal').innerText = '$' + d.sim_balance.toFixed(2);
+                document.getElementById('v-sim-init').innerText = '$' + d.sim_initial.toFixed(2);
+                document.getElementById('v-sim-hwm').innerText = '$' + d.sim_hwm.toFixed(2);
+                document.getElementById('v-vault-bal').innerText = '$' + d.vault_balance.toFixed(2);
+                document.getElementById('v-benchmark').innerText = '$' + d.benchmark_cash.toFixed(2);
+                document.getElementById('v-risk').innerText = (d.risk_ratio*100).toFixed(1)+'%';
+                document.getElementById('v-lev').innerText = d.leverage+'x';
+                document.getElementById('v-winrate').innerText = d.win_rate.toFixed(1)+'%';
+                document.getElementById('sw-swan').innerText = d.black_swan?'✅':'❌';
+                document.getElementById('sw-kelly').innerText = d.kelly_formula?'✅':'❌';
+                document.getElementById('sw-dog').innerText = d.mad_dog?'🔥':'❌';
+                document.getElementById('sw-vol').innerText = d.volatility_scalar?'✅':'❌';
+                document.getElementById('sw-space').innerText = d.space_lock?'✅':'❌';
+                document.getElementById('sw-obi').innerText = d.obi_filter?'✅':'❌';
+                document.getElementById('sw-rs').innerText = d.rs_filter?'✅':'❌';
+                document.getElementById('sw-sml').innerText = d.sml_booster?'✅':'❌';
+                document.getElementById('v-strategy').innerText = d.strategy_mode;
+                document.getElementById('sel-strategy').value = d.strategy_mode;
+                document.getElementById('in-lev').value = d.leverage;
+                document.getElementById('in-risk').value = (d.risk_ratio*100).toFixed(1);
+                document.getElementById('in-benchmark').value = d.benchmark_cash;
+                document.getElementById('in-adx').value = d.adx_thr;
+                document.getElementById('in-ema').value = d.ema_trend;
+                document.getElementById('sel-interval').value = d.interval;
+                document.getElementById('in-atr-period').value = d.atr_period;
+                document.getElementById('in-atr-mult').value = d.atr_mult;
+                document.getElementById('in-sl-buffer').value = d.sl_buffer;
+                document.getElementById('in-dog-trigger').value = d.mad_dog_trigger;
+                document.getElementById('in-dog-boost').value = d.mad_dog_boost;
+                document.getElementById('v-vault-sim').innerText = '$'+d.sim_balance.toFixed(2);
+                document.getElementById('v-vault-hwm2').innerText = '$'+d.sim_hwm.toFixed(2);
+                document.getElementById('v-vault-init2').innerText = '$'+d.sim_initial.toFixed(2);
+                const dd = d.sim_hwm>0?((d.sim_hwm-d.sim_balance)/d.sim_hwm*100):0;
+                document.getElementById('v-vault-dd').innerText = Math.max(dd,0).toFixed(2)+'%';
+                let ah='';
+                for(let[s,w] of Object.entries(d.asset_weights||{}))
+                    ah+=`<div class="data-row"><span>${s}</span><span>${(w*100).toFixed(1)}% <button class="btn-sm" onclick="removeAsset('${s}')">❌</button></span></div>`;
+                document.getElementById('asset-list').innerHTML = ah||'<div style="color:#565f89;text-align:center">暂无监控币种</div>';
+                document.getElementById('v-sentry-status').innerHTML = d.sentry_enabled?'<span class="val-green">✅ 运行</span>':'❌ 停止';
+                document.getElementById('v-sentry-interval').innerText = (d.sentry_interval/60)+'分钟';
+                document.getElementById('sel-sentry-freq').value = String(d.sentry_interval/60);
+                let sh='';
+                (d.sentry_watchlist||[]).forEach(s=>{sh+=`<div class="data-row"><span>${s}</span><button class="btn-sm" onclick="sentryRemove('${s}')">❌</button></div>`;});
+                document.getElementById('sentry-list').innerHTML = sh||'<div style="color:#565f89;text-align:center">暂无监控</div>';
+                document.getElementById('v-total-trades').innerText = d.total_trades;
+                document.getElementById('v-winrate2').innerText = d.win_rate.toFixed(1)+'%';
+                document.getElementById('v-env').innerText = d.running_mode;
+                document.getElementById('v-dryrun').innerText = d.dry_run?'✅':'❌';
+                document.getElementById('v-autotune').innerText = d.auto_tune?'✅':'❌';
+                document.getElementById('v-hedge').innerText = d.hedge_mode?'✅':'❌';
+                document.getElementById('v-vault-en').innerText = d.vault_enabled?'✅':'❌';
+                let ph='';
+                if(!d.positions.length) ph='<tr><td colspan="8" style="text-align:center;color:#565f89">暂无交战，处于静默潜伏状态...</td></tr>';
+                else d.positions.forEach(p=>{
+                    const l=p.type==='LONG', k=p.trade_id||p.symbol;
+                    const pnl=p.pnl||0, cp=p.current_price||p.entry;
+                    const pnlCls=pnl>=0?'val-green':'val-red';
+                    ph+=`<tr><td class="val">${p.real_symbol}</td><td class="${l?'val-green':'val-red'}">${l?'🚀 多':'🩸 空'}</td><td>${p.qty}</td><td>$${p.entry.toFixed(4)}</td><td>$${cp.toFixed(4)}</td><td class="${pnlCls}">${pnl>=0?'+':''}$${pnl.toFixed(2)}</td><td>$${(p.sl||0).toFixed(4)}</td><td><button class="btn-sm" onclick="posBreakeven('${k}')">🛡️</button> <button class="btn-sm" onclick="posClose('${k}')">❌</button></td></tr>`;
+                });
+                document.getElementById('pos-table').innerHTML = ph;
+            } catch(e) { console.error("连接中枢失败", e); }
+        }
+        setInterval(fetchState, 1000);
+        setInterval(fetchBill, 5000);
+        fetchState();
+        fetchBill();
+    </script>
+</body>
+</html>
