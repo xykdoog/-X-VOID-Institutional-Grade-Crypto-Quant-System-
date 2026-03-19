@@ -23,43 +23,54 @@
 ## 🏗️ 核心架构图 (Core Architecture)
 
 
+<p align="center">
+  <img src="https://img.shields.io/badge/X--VOID-OMEGA_V9.0-00f2ff?style=for-the-badge&logo=target" alt="X-VOID OMEGA">
+</p>
+
+# 🏗️ 核心架构图 (Core Architecture)
+
+
 ```mermaid
 
 
 graph TD
-    %% Style Definitions
+    %% 样式定义 - 采用黑客矩阵配色
     classDef hardware fill:#1a1a1a,stroke:#00f2ff,stroke-width:2px,color:#fff;
     classDef logic fill:#0d0d0d,stroke:#ff00ea,stroke-width:2px,color:#fff;
     classDef ai fill:#000,stroke:#fedc0a,stroke-width:2px,color:#fff;
 
-    %% Data Layer
-    WS(Binance Websocket <br/>443/TLS):::hardware
+    %% 节点定义
+    WS("Binance Websocket <br/>(Real-time Stream)"):::hardware
     
-    %% Compute Layer
-    Vector(Vectorized NumPy <br/>Parity Engine):::logic
-    SMC[SMC & CVD <br/>Signal Matrix]:::logic
+    subgraph Processing_Core ["Quantitative Core [NumPy]"]
+        Vector("Vectorized Tensor Engine"):::logic
+        SMC["SMC & CVD Matrix"]:::logic
+    end
 
-    %% Intelligence Layer
-    AI_Intel{AI Sentinel Hub <br/>Gemini / Claude / R1}:::ai
+    subgraph Intelligence_Sentinel ["AI Sentinel Hub"]
+        AI_Intel{"Multi-LLM Matrix <br/>(Gemini / Claude / R1)"}:::ai
+    end
 
-    %% Risk Layer
-    Risk(Dynamic Risk Armor <br/>ATR / Net Delta):::logic
-    Algo(Order Chasing <br/>Async Execution):::hardware
+    subgraph Tactical_Execution ["Execution & Risk Armor"]
+        Risk("Risk Armor <br/>(ATR / Net Delta)"):::logic
+        Algo("Ghost Execution <br/>(Async Chasing)"):::hardware
+    end
     
-    %% Persistence
-    Redis[(Redis <br/>High-Speed Bus)]:::hardware
-    Dashboard(X-VOID Dashboard <br/>FastAPI / WebUI):::logic
+    Redis[("State Persistence <br/>[Redis Bus]")]:::hardware
+    Dashboard("FastAPI WebUI"):::logic
 
-    %% Connections
+    %% 逻辑流向
     WS ==>|Raw Tensors| Vector
-    Vector -->|Optimized Signals| SMC
-    WS -.->|Sentiment Data| AI_Intel
+    Vector -->|Signal Flux| SMC
+    WS -.->|Market Context| AI_Intel
     SMC -->|Validated Signals| Risk
     AI_Intel -.->|Adaptive Regime| Risk
     Risk ==>|Actionable Orders| Algo
-    Algo -->|State Sync| Redis
+    Algo -->|Atomic Sync| Redis
     Redis --- Dashboard
     Redis -.->|Feedback Loop| WS
+
+
 
 🌟 核心技术矩阵 (Core Technical Matrix)
 1.  极致的算法同源 (Zero-Drift Engine Parity)
@@ -76,6 +87,7 @@ graph TD
 时钟一致性熔断：回测系统同步了 48 小时的“黑天鹅冷却时间锁”，确保在回放历史极端行情时，策略的停火逻辑得到真实演练。
 
 2.  机构级风控护甲 (The Fortress: Quantitative Risk Control)
+
 “在波动中生存，在确定性中增压。” 系统内置了多层级、多维度的风险阻断算法。
 
 三阶段动态止损 (TSL - Tri-Stage Guardian)：
@@ -86,11 +98,14 @@ Stage 2 (动态保本)：当浮盈触及波动率阈值，止损线自动上移�
 
 Stage 3 (利润收割)：锁定高位插针极值点（Highest/Lowest Price），以移动追踪模式最大程度捕获单边趋势的尾部利润。
 
-净敞口 Delta 管理 (Net Delta Circuit Breaker)：系统超越了单一品种的风险考量。通过 Net_Delta 算法，实时统计账户的总名义价值暴露。当全账户做多/做空比例失衡（例如超过 0.7 净敞口）时，系统将强行拦截同向新订单，强迫资产进入对冲态势。
+净敞口 Delta 管理 (Net Delta Circuit Breaker)：系统超越了单一品种的风险考量。通过 Net_Delta 算法，实时统计账户的总名义价值暴露。当全账户做多/做空比例失衡（例如超
+
+过 0.7 净敞口）时，系统将强行拦截同向新订单，强迫资产进入对冲态势。
 
 黑天鹅主动扫描仪：实时审计价格跳空 (Gap)、分钟级极端振幅、以及相对于 20 日均量的天量异动。一旦触发高维波动率预警，系统将进入“堡垒模式”，自动挂起所有策略循环 48 小时。
 
 3.  AI 智能哨兵 (The Neural Overseer: LLM Intelligence)
+
 “赋予冰冷代码以‘盘感’。” 利用大模型的逻辑推理能力作为决策的最后一道终审。
 
 异步决策链路 (Agentic Multi-LLM Inference)：
@@ -106,6 +121,7 @@ Anthropic Claude Sonnet 4.6/ Opus 4-6：核心逻辑法官，负责对指标信�
 DeepSeek-R1 PRO (via SiliconFlow)：极速情绪分析专家，通过实时搜索过滤链上噪音。
 
 零延迟架构：所有 AI 推理运行在独立的生产-消费线程中，绝不阻塞亚毫秒级的交易执行心跳。
+
 零延迟架构：LLM 推理运行在独立的异步工作线程中，绝不阻塞核心交易循环的心跳。
 
 弹性边界自适应 (Market Regime Adaptation)：
@@ -117,23 +133,38 @@ AI 会自动识别当前市场处于“单边、震荡、或极端恐慌”哪�
 🚀 进阶技术支柱 (Advanced Tactical Modules)
 
 4.  自适应“幽灵”执行算法 (Ghost Execution & Order Chasing)
+
 “不留残仓，不计成本，只为吃满。” 针对高波动标的（SOL/PEPE 等）设计的极致执行层。
 
-智能追单协程 (Async Order Chasing)：系统在执行紧急信号时，不再使用低效的等待模式。若首笔 IOC (Immediate or Cancel) 订单未能全额成交，系统将瞬间启动追单协程，每隔 3 秒锚定买一/卖一盘口进行动态挂单重试，直至仓位完全填满。
+智能追单协程 (Async Order Chasing)：系统在执行紧急信号时，不再使用低效的等待模式。若首笔 IOC (Immediate or Cancel) 订单未能全额成交，系统将瞬间启动追单协程，每隔
 
-盘口流动性深度审计：在每一笔订单下达前，系统会对 L2 订单簿进行毫秒级扫描，计算 VWAP 真实滑点。若当前深度无法支撑目标仓位，系统会自动将订单拆分为多个微量原子单，防止引发盘口瞬间崩塌。
+3 秒锚定买一/卖一盘口进行动态挂单重试，直至仓位完全填满。
+
+盘口流动性深度审计：在每一笔订单下达前，系统会对 L2 订单簿进行毫秒级扫描，计算 VWAP 真实滑点。若当前深度无法支撑目标仓位，系统会自动将订单拆分为多个微量原子单，防止引
+
+发盘口瞬间崩塌。
 
 5. 分布式实时状态总线 (High-Concurrency Redis Bus)
-“零延迟监控，断电级数据不坏金身。” * Redis Pub/Sub 信号流：核心交易引擎与 Web UI 之间彻底摒弃了传统的 HTTP 轮询模式，改用 Redis 发布/订阅机制。每一笔成交、每一个信号的闪烁都会以 < 5ms 的延迟直达你的指挥部仪表盘。
 
-Write-Ahead Logging (WAL) 账本同步：参考了数据库级别的日志保护逻辑。系统在更新沙盒余额或实盘持仓的瞬间，会同时向 Redis 和物理磁盘执行 fsync 强制落盘，确保即便服务器意外宕机，重启后的“利滚利”对账精度依然能达到 10^-8。
+“零延迟监控，断电级数据不坏金身。” * Redis Pub/Sub 信号流：核心交易引擎与 Web UI 之间彻底摒弃了传统的 HTTP 轮询模式，改用 Redis 发布/订阅机制。每一笔成交、每一个信号
+
+的闪烁都会以 < 5ms 的延迟直达你的指挥部仪表盘。
+
+Write-Ahead Logging (WAL) 账本同步：参考了数据库级别的日志保护逻辑。系统在更新沙盒余额或实盘持仓的瞬间，会同时向 Redis 和物理磁盘执行 fsync 强制落盘，确保即便服务器
+
+意外宕机，重启后的“利滚利”对账精度依然能达到 10^-8。
 
 6. 神经网络哨兵集群 (Neural Oversight Committee)
+
 “大模型不再是装饰品，它是交易的终审大法官。”
 
-Agentic 多智能体辩论：系统不再迷信单一 LLM 的判断。Intelligence Hub 能够同时调度 Claude-3.5-Sonnet（负责大逻辑）与 DeepSeek-R1（负责短线情绪），通过多模型交叉审计过滤由于虚假消息引发的虚假信号。
+Agentic 多智能体辩论：系统不再迷信单一 LLM 的判断。Intelligence Hub 能够同时调度 Claude-3.5-Sonnet（负责大逻辑）与 DeepSeek-R1（负责短线情绪），通过多模型交叉审计
 
-黑匣子决策审计记录：每一笔交易入场时，系统都会自动生成一张包含当时所有技术指标、盘口状态、甚至 AI 原始推理日志的“决策快照”，并永久绑定该交易 ID 存档。这为你日后复盘“为什么开这单”提供了上帝视角的完整回溯。
+过滤由于虚假消息引发的虚假信号。
+
+黑匣子决策审计记录：每一笔交易入场时，系统都会自动生成一张包含当时所有技术指标、盘口状态、甚至 AI 原始推理日志的“决策快照”，并永久绑定该交易 ID 存档。这为你日后复盘“为
+
+什么开这单”提供了上帝视角的完整回溯。
 
 
 ⚖️ 强制性开源协议 (GPL-3.0 Copyleft Policy)
@@ -144,9 +175,12 @@ Agentic 多智能体辩论：系统不再迷信单一 LLM 的判断。Intelligen
 
 代码自由，但有代价：任何人都可以免费获取、修改、运行本系统，甚至可以将其用于商业化量化基金。
 
-强制开源回馈：如果你修改了本系统的任何核心逻辑（如改写了 trading_engine.py 的信号算法 或 risk_manager.py 的风控模型）并向他人分发或提供服务，你必须无条件公开你修改后的全部源代码。
+强制开源回馈：如果你修改了本系统的任何核心逻辑（如改写了 trading_engine.py 的信号算法 或 risk_manager.py 的风控模型）并向他人分发或提供服务，你必须无条件公开你修改
+
+后的全部源代码。
 
 禁止闭源商业化：严禁将本系统剥离核心逻辑后包装成付费闭源软件出售。所有基于本项目的衍生品，必须保持相同的 GPL-3.0 协议。
+
 
 
 🛠️ 快速启动 (Quick Start)
@@ -169,7 +203,9 @@ python dashboard.py # 启动 Web 监控面板 (Web Dashboard)
 
 📜 免责声明 (Disclaimer)
 [!WARNING]
+
 量化交易存在极高的资金风险。本系统仅供技术研究与沙盒演习使用，不构成任何投资建议。统帅，在按下实盘开关前，请务必在模拟盘（SANDBOX）完成至少 200 小时的无故障巡航测试。
 
 <p align="center">
+
 X-VOID Omega - © 2023-2026 xykdoog. MIT Licensed.
