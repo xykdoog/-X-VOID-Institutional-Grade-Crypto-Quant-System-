@@ -22,38 +22,40 @@
 
 ## 🏗️ 核心架构图 (Core Architecture)
 
-`graph TD
-    %% 节点样式定义 (Cool Style)
+graph TD
+    %% 1. Style Definitions
     classDef hardware fill:#1a1a1a,stroke:#00f2ff,stroke-width:2px,color:#fff;
     classDef logic fill:#0d0d0d,stroke:#ff00ea,stroke-width:2px,color:#fff;
     classDef ai fill:#000,stroke:#fedc0a,stroke-width:2px,color:#fff;
 
-    %% 1. 数据采集层 (Data Layer)
-    WS(Binance Websocket <br/>443/TLS):::hardware
+    %% 2. Node Definitions
+    WS(Edge Gateway <br/>Binance WS/443):::hardware
     
-    %% 2. 核心计算层 (Compute Layer)
-    Vector(Vectorized NumPy <br/>Parity Engine):::logic
-    SMC[SMC & CVD <br/>Signal Matrix]:::logic
+    subgraph Core_Engine [Quantitative Processing Core]
+        Vector(Vectorized Tensor Engine <br/>NumPy/C-Extension):::logic
+        SMC[SMC & CVD <br/>Signal Matrix]:::logic
+    end
 
-    %% 3. 智能审计层 (Intelligence Layer)
-    AI_Intel{AI Intelligence Hub <br/>Gemini / Claude / R1}:::ai
+    subgraph Intelligence_Layer [Neural Oversight]
+        AI_Intel{Multi-LLM Hub <br/>Gemini / Claude / R1}:::ai
+    end
 
-    %% 4. 执行与风控层 (Execution & Risk)
-    Risk(Dynamic Risk Armor <br/>ATR / Net Delta):::logic
-    Algo(Order Chasing <br/>Async Execution):::hardware
+    subgraph Execution_Layer [Tactical Execution]
+        Risk(Quantitative Risk Armor <br/>ATR / Net Delta):::logic
+        Algo(Async Order Chasing <br/>Ghost Execution):::hardware
+    end
     
-    %% 5. 存储与展示 (Persistence)
-    Redis[(Redis <br/>High-Speed Bus)]:::hardware
-    Dashboard(FastAPI <br/>Web UI):::logic
+    Redis[(State Persistence <br/>Redis Data Bus)]:::hardware
+    Dashboard(X-VOID Dashboard <br/>FastAPI / React):::logic
 
-    %% 逻辑连接
-    WS ==>|Raw Stream| Vector
-    Vector -->|Optimized Tensors| SMC
-    WS -.->|Sentiment Data| AI_Intel
-    SMC -->|Signals| Risk
-    AI_Intel -.->|Adaptive Thresholds| Risk
-    Risk ==>|Validated Orders| Algo
-    Algo -->|State Sync| Redis
+    %% 3. Strategic Connections
+    WS ==>|Raw Tensors| Vector
+    Vector -->|Signal Stream| SMC
+    WS -.->|Sentiment Context| AI_Intel
+    SMC -->|Validated Signals| Risk
+    AI_Intel -.->|Adaptive Regime| Risk
+    Risk ==>|Actionable Orders| Algo
+    Algo -->|Atomic Sync| Redis
     Redis --- Dashboard
     Redis -.->|Feedback Loop| WS
 
