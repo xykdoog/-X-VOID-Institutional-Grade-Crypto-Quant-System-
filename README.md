@@ -18,32 +18,44 @@
 ---
 
 > [!IMPORTANT]
-> **统帅，这不是一个简单的炒币脚本。** 这是一个基于 **NumPy 向量化引擎** 的工程级资产管理工具，旨在提供极端的稳定性、对冲功能和 AI 驱动的边界控制。
+> ** 这不是一个简单的炒币脚本。** 这是一个基于 **NumPy 向量化引擎** 的工程级资产管理工具，旨在提供极端的稳定性、对冲功能和 AI 驱动的边界控制。
 
 ## 🏗️ 核心架构图 (Core Architecture)
 
-```mermaid
-graph TD
-    %% Define Nodes
-    WS(Binance Websocket 443)
-    Vector(Vectorized NumPy Engine)
-    SMC[SMC & CVD Signal Matrix]
-    AI_Intel{AI Intelligence Hub<br/>Claude-3.5-Sonnet / R1}
-    Risk(Dynamic Risk Armor<br/>ATR Stop / Net Delta)
-    Algo(Order Chasing Algo)
-    Dashboard(FastAPI Web UI)
-    Redis[Redis Data Bus]
+`graph TD
+    %% 节点样式定义 (Cool Style)
+    classDef hardware fill:#1a1a1a,stroke:#00f2ff,stroke-width:2px,color:#fff;
+    classDef logic fill:#0d0d0d,stroke:#ff00ea,stroke-width:2px,color:#fff;
+    classDef ai fill:#000,stroke:#fedc0a,stroke-width:2px,color:#fff;
 
-    %% Define Connections
-    WS -->|Raw Data| Vector
-    Vector -->|Optimized Stream| SMC
-    WS -->|Intelligence| AI_Intel
+    %% 1. 数据采集层 (Data Layer)
+    WS(Binance Websocket <br/>443/TLS):::hardware
+    
+    %% 2. 核心计算层 (Compute Layer)
+    Vector(Vectorized NumPy <br/>Parity Engine):::logic
+    SMC[SMC & CVD <br/>Signal Matrix]:::logic
+
+    %% 3. 智能审计层 (Intelligence Layer)
+    AI_Intel{AI Intelligence Hub <br/>Gemini / Claude / R1}:::ai
+
+    %% 4. 执行与风控层 (Execution & Risk)
+    Risk(Dynamic Risk Armor <br/>ATR / Net Delta):::logic
+    Algo(Order Chasing <br/>Async Execution):::hardware
+    
+    %% 5. 存储与展示 (Persistence)
+    Redis[(Redis <br/>High-Speed Bus)]:::hardware
+    Dashboard(FastAPI <br/>Web UI):::logic
+
+    %% 逻辑连接
+    WS ==>|Raw Stream| Vector
+    Vector -->|Optimized Tensors| SMC
+    WS -.->|Sentiment Data| AI_Intel
     SMC -->|Signals| Risk
     AI_Intel -.->|Adaptive Thresholds| Risk
-    Risk -->|Orders| Algo
-    Algo -->|Exec| Redis
-    Redis --> Dashboard
-    Redis -.-> WS
+    Risk ==>|Validated Orders| Algo
+    Algo -->|State Sync| Redis
+    Redis --- Dashboard
+    Redis -.->|Feedback Loop| WS
 
 🌟 核心技术矩阵 (Core Technical Matrix)
 1.  极致的算法同源 (Zero-Drift Engine Parity)
