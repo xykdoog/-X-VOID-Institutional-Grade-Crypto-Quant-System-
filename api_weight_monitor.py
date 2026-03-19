@@ -8,8 +8,8 @@ API 权重监控模块 - api_weight_monitor.py
 import time
 import threading
 from datetime import datetime
-from logger_setup import logger
-from utils import send_tg_alert
+from utils.logger_setup import logger
+from utils.utils import send_tg_alert
 
 # 全局权重监控状态
 API_WEIGHT_STATE = {

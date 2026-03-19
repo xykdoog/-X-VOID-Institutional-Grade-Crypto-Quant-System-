@@ -19,14 +19,14 @@ from config import (
     save_data, state_lock, save_sentry_watchlist,
     get_elastic_boundaries
 )
-from utils import (
+from utils.utils import (
     get_current_price, get_24h_change, get_all_valid_symbols, search_symbols_fuzzy,
     safe_send_message, safe_edit_message, safe_delete_message, safe_answer_callback,
     send_tg_msg, get_bot, create_progress_bar, normalize_weights,
     get_kline_chart_buffer
 )
 import config
-from logger_setup import logger
+from utils.logger_setup import logger
 _bot_ref = None
 
 def register_bot_instance(bot_instance):
@@ -34,7 +34,7 @@ def register_bot_instance(bot_instance):
     global bot # 声明全局 bot 变量供下方装饰器使用
     _bot_ref = bot_instance
     bot = bot_instance
-from network_config import get_telebot_proxy
+from utils.network_config import get_telebot_proxy
 from human_override import get_override_manager
 
 # ==========================================

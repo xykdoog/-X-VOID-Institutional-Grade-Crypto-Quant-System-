@@ -20,7 +20,7 @@ from config import (
     save_data, state_lock, positions_lock,
     apply_strategy_preset, save_sentry_watchlist
 )
-from logger_setup import logger
+from utils.logger_setup import logger
 
 app = FastAPI(title="WJ-BOT Command Center")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])

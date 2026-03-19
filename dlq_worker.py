@@ -14,7 +14,7 @@
 
 import time
 import threading
-from logger_setup import logger
+from utils.logger_setup import logger
 from config import SYSTEM_CONFIG
 
 def dlq_sweeper(client=None):
@@ -60,8 +60,8 @@ from config import (
 )
 import config
 
-from utils import send_tg_alert, round_to_tick_size, round_to_quantity_precision
-from logger_setup import logger
+from utils.utils import send_tg_alert, round_to_tick_size, round_to_quantity_precision
+from utils.logger_setup import logger
 
 
 def add_to_dlq(symbol, position_type, qty, entry_price, trade_id, error_reason):

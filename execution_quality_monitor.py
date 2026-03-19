@@ -17,7 +17,7 @@ import threading
 import numpy as np
 from collections import deque, defaultdict
 from datetime import datetime, timedelta
-from logger_setup import logger
+from utils.logger_setup import logger
 
 # ==========================================
 # 常量定义

@@ -7,7 +7,7 @@ Enhanced Black Swan Detection with Consecutive Event Tracking
 
 import threading
 from datetime import datetime, timedelta
-from logger_setup import logger
+from utils.logger_setup import logger
 
 # Redis 持久化 key
 _REDIS_BLACKSWAN_KEY = "wjbot:global:blackswan_state"

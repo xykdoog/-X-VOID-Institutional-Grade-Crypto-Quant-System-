@@ -6,7 +6,7 @@ Enhanced Multi-Timeframe Resonance with Trend Strength Analysis
 """
 
 import numpy as np
-from logger_setup import logger
+from utils.logger_setup import logger
 
 
 def check_mtf_resonance_enhanced(client, symbol, df_low, signal_type, high_timeframe='4h'):

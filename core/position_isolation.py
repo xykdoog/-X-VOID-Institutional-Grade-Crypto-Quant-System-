@@ -15,7 +15,7 @@
 import time
 import random
 from datetime import datetime
-from logger_setup import logger
+from utils.logger_setup import logger
 
 # ==========================================
 # 🔥 机器人订单标签生成器

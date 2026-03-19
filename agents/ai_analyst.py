@@ -10,8 +10,8 @@ import json
 import logging
 import httpx
 import base64
-import trading_engine  # 👈 引入执行器
-from intelligence_hub import get_intelligence_hub, IntelligenceType  # 👈 引入新情报中心
+from core import trading_engine  # 👈 引入执行器
+from agents.intelligence_hub import get_intelligence_hub, IntelligenceType  # 👈 引入新情报中心
 from datetime import datetime
 from anthropic import AsyncAnthropic
 from config import SYSTEM_CONFIG

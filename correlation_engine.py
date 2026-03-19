@@ -15,9 +15,9 @@ import time
 import threading
 import numpy as np
 from datetime import datetime
-from logger_setup import logger
+from utils.logger_setup import logger
 import config
-from utils import retry_on_failure, send_tg_msg
+from utils.utils import retry_on_failure, send_tg_msg
 
 # ==========================================
 # 全局相关性内存缓存

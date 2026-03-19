@@ -24,7 +24,7 @@ sys.path.insert(0, parent_dir)
 sys.path.insert(0, wj_bot_dir)
 
 import config
-from trading_engine import get_performance_stats, calculate_position_size
+from core.trading_engine import get_performance_stats, calculate_position_size
 
 
 class TestKellyFormula:

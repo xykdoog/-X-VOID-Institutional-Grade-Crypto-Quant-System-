@@ -7,8 +7,8 @@
 
 import time
 import threading
-from logger_setup import logger
-from utils import send_tg_msg, send_tg_alert, get_current_price, round_to_quantity_precision, round_to_tick_size
+from utils.logger_setup import logger
+from utils.utils import send_tg_msg, send_tg_alert, get_current_price, round_to_quantity_precision, round_to_tick_size
 from config import SYSTEM_CONFIG
 
 # ==========================================

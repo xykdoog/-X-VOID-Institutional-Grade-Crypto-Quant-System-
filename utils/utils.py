@@ -10,7 +10,7 @@ import queue
 import asyncio
 import threading
 from collections import deque
-from logger_setup import logger
+from utils.logger_setup import logger
 from config import SYSTEM_CONFIG
 
 # ==========================================
@@ -42,7 +42,7 @@ from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor
 import telebot
 from telebot import apihelper
-from logger_setup import logger
+from utils.logger_setup import logger
 
 from config import (
     SYSTEM_CONFIG, NETWORK_CONFIG,

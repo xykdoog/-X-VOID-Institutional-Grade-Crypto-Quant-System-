@@ -11,7 +11,7 @@ from datetime import datetime
 import queue
 import multiprocessing as mp
 import sys
-from trading_engine import calculate_indicators, generate_trading_signals
+from core.trading_engine import calculate_indicators, generate_trading_signals
 
 logger = logging.getLogger(__name__)
 

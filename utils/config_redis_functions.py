@@ -5,7 +5,7 @@ Redis-based 配置加载和保存函数
 用于替换 config.py 中的 JSON 文件操作
 """
 
-from redis_manager import redis_db
+from utils.redis_manager import redis_db
 from datetime import datetime
 import threading
 import time

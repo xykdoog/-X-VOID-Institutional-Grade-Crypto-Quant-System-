@@ -7,7 +7,7 @@ Telegram Bot 回调处理器
 
 import html
 from telebot import types
-from logger_setup import logger
+from utils.logger_setup import logger
 from config import (
     SYSTEM_CONFIG, SENTRY_CONFIG, SENTRY_INTERVAL_OPTIONS,
     STRATEGY_PRESETS, LAUNCH_MODE_MAP,
@@ -15,13 +15,13 @@ from config import (
     state_lock
 )
 import config
-from utils import (
+from utils.utils import (
     get_current_price,
     safe_send_message, safe_edit_message, safe_delete_message, safe_answer_callback,
     send_tg_msg, get_bot, normalize_weights
 )
 from human_override import get_override_manager
-from redis_manager import redis_db
+from utils.redis_manager import redis_db
 if not redis_db.enabled:
     logger.warning("⚠️ Bot 检测到 Redis 不可用，自动切入本地内存模式，响应速度已优化")
 

@@ -8,7 +8,7 @@ Redis 状态引擎 - redis_manager.py
 import json
 import redis
 from datetime import datetime
-from logger_setup import logger
+from utils.logger_setup import logger
 
 class DateTimeEncoder(json.JSONEncoder):
     """处理 datetime 序列化"""

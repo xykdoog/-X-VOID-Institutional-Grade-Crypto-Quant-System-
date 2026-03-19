@@ -17,7 +17,7 @@ import httpx
 from enum import Enum
 from datetime import datetime
 from binance.client import Client
-from logger_setup import logger
+from utils.logger_setup import logger
 import config
 class IntelligenceType(Enum):
     BLACK_SWAN = "BLACK_SWAN"

@@ -91,7 +91,7 @@ import telebot
 from web_api import init_web_dashboard
 from telebot import TeleBot
 import config
-from utils import send_tg_msg
+from utils.utils import send_tg_msg
 import config
 
 def push_start_menu_on_launch():
@@ -145,7 +145,7 @@ except ImportError:
     PSUTIL_AVAILABLE = False
 
 # 导入日志系统
-from logger_setup import logger
+from utils.logger_setup import logger
 
 # 🔥 日志记录代理状态
 if not USE_PROXY:
@@ -161,13 +161,13 @@ from config import (
 import config
 
 # 导入工具函数
-from utils import (
+from utils.utils import (
     set_bot_instance, get_all_valid_symbols, 
     normalize_weights, shutdown_message_pool
 )
 
 # 导入交易引擎
-from trading_engine import trading_engine_loop, sync_benchmark_with_api
+from core.trading_engine import trading_engine_loop, sync_benchmark_with_api
 
 # 导入监控系统
 from monitors import (

@@ -11,7 +11,7 @@ import time
 import threading
 from datetime import datetime
 
-from logger_setup import logger
+from utils.logger_setup import logger
 
 # 🔥 V8.0 Safety Fix: 记录模块加载时间，用于启动期间防止 Ghost Meltdown
 _MODULE_BOOT_TIME = time.monotonic()

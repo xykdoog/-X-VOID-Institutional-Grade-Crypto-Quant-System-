@@ -25,7 +25,7 @@ import threading
 import time
 import traceback
 
-from logger_setup import logger
+from utils.logger_setup import logger
 
 # ==========================================
 # 全局任务队列（生产者 put_nowait，消费者 get）

@@ -26,9 +26,9 @@ if sys.platform == "win32":
 import time
 import numpy as np
 import pandas as pd
-from logger_setup import logger
+from utils.logger_setup import logger
 import config
-from execution_algo import execute_liquidity_aware_close, execute_ioc_protected_close
+from core.execution_algo import execute_liquidity_aware_close, execute_ioc_protected_close
 from dlq_worker import add_to_dlq
 # ==========================================
 # 🔥 机构级风险精算引擎 (V7.2 Final)
@@ -87,9 +87,9 @@ from config import (
     save_data, TRADE_HISTORY, state_lock
 )
 import config  # 用于修改模块级变量
-from utils import send_tg_msg, get_current_price, generate_trade_chart, MESSAGE_THREAD_POOL 
-from trading_engine import emergency_close_all, get_indicator_cache, get_performance_stats
-from execution_algo import execute_liquidity_aware_close
+from utils.utils import send_tg_msg, get_current_price, generate_trade_chart, MESSAGE_THREAD_POOL 
+from core.trading_engine import emergency_close_all, get_indicator_cache, get_performance_stats
+from core.execution_algo import execute_liquidity_aware_close
 
 def get_current_regime():
     """

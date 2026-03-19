@@ -14,7 +14,7 @@ import numpy as np
 import pandas as pd
 from datetime import datetime, timedelta
 import threading
-from logger_setup import logger
+from utils.logger_setup import logger
 
 # 全局相关性矩阵缓存
 _correlation_cache = {}

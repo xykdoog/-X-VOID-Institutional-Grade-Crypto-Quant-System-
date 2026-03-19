@@ -1,7 +1,7 @@
 
 #!/usr/bin/env python3
 """Quick smoke test for smc_signal_template"""
-from smc_signal_template import format_smc_fire_signal, build_smc_signal_from_trade_context
+from tests.smc_signal_template import format_smc_fire_signal, build_smc_signal_from_trade_context
 
 # Test 1: format_smc_fire_signal
 msg = format_smc_fire_signal(
@@ -44,7 +44,7 @@ print(msg2)
 print("\n✅ All tests passed!")
 #!/usr/bin/env python3
 """Quick smoke test for smc_signal_template"""
-from smc_signal_template import format_smc_fire_signal, build_smc_signal_from_trade_context
+from tests.smc_signal_template import format_smc_fire_signal, build_smc_signal_from_trade_context
 
 # Test 1: format_smc_fire_signal
 msg = format_smc_fire_signal(

@@ -14,7 +14,7 @@ import websocket
 
 from config import SYSTEM_CONFIG, get_binance_interval, USE_PROXY_HARD_SWITCH
 import config
-from utils import send_tg_msg
+from utils.utils import send_tg_msg
 
 # 🔥 V7.0 新增：全局 input_queue 引用（由 main.py 注入）
 _global_input_queue = None

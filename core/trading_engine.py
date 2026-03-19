@@ -46,7 +46,7 @@ import pandas_ta as ta
 from binance.enums import *
 
 # Local imports
-from logger_setup import logger
+from utils.logger_setup import logger
 
 import config
 from config import (
@@ -54,12 +54,12 @@ from config import (
     csv_lock, config_lock, state_lock, get_binance_interval, save_data
 )
 
-from utils import (
+from utils.utils import (
     get_current_price, round_to_tick_size, round_to_quantity_precision,
     send_tg_msg, send_tg_alert, execute_vault_transfer
 )
 
-from risk_manager import get_risk_manager
+from core.risk_manager import get_risk_manager
 
 # 🔥 导入 SMC 开火信号模板
 try:
