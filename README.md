@@ -150,3 +150,50 @@ python dashboard.py # 启动 Web 监控面板 (Web Dashboard)
 
 技术主权：我们欢迎商业使用，但任何试图利用本项目技术优势却拒绝回馈社区的行为，都将受到法律与开源社区的共同追责。
 
+🚀 X-VOID Omega: Institutional-Grade Crypto Quant System
+Commander's Directive: This is not a mere script; it is an engineering-grade asset management fortress built on a Vectorized NumPy Engine. Designed for extreme stability, mandatory hedging, and AI-driven self-healing boundaries.
+
+🌟 Core Technical Matrix
+1. 🩸 Zero-Drift Engine Parity
+"Backtest as Live, Execution as Intended."
+
+Bit-for-Bit Vectorized Flow: Unlike traditional loop-based systems, X-VOID Omega maps real-time WebSocket streams directly into the same NumPy C-extension tensors used by the backtest engine. This ensures indicator calculations achieve Bit-for-Bit parity, effectively eliminating signal drift at the physical level.
+
+High-Fidelity Physical Simulation:
+
+Cross-Margin Liquidation Modeling: Built-in dynamic liquidation price estimation, perfectly replicating exchange-tier margin tiering.
+
+Black Swan Circuit Breakers: A synchronized 48-hour "Cool-Down" protocol for extreme market events, ensuring survival strategies are tested under real-world stress.
+
+2. 🛡️ Institutional Risk Armor
+Tri-Stage Guardian (TSL): An ATR-based volatility defense system. Stage 1: Initial Noise Filter; Stage 2: Dynamic Break-even Lock; Stage 3: Extremum Spike Harvest—squeezing maximum profit from the tail of a trend.
+
+Global Net Delta Management: Real-time auditing of total account notional exposure. When net delta imbalances are detected, the system forcibly intercepts directional orders and mandates a hedge-state to prevent systemic drawdowns.
+
+3. 🧠 The Neural Overseer (AI Sentinel Hub)
+Triple-Model Asynchronous Matrix:
+
+Google Gemini 1.5 Pro: Leverages massive context windows for global macro report scanning and multi-modal K-line pattern recognition.
+
+Anthropic Claude 3.5 Sonnet: Acts as the "Logic Judge" for deep certainty audits of SMC (Smart Money Concepts) signals.
+
+DeepSeek-R1: Rapid sentiment analysis, filtering on-chain noise and identifying whale movement anomalies.
+
+Market Regime Adaptation: The AI autonomously re-calibrates strategy boundaries (e.g., ADX thresholds and ATR multipliers) based on the current market regime: Trending, Ranging, or Panic.
+
+4. ⚔️ Adaptive "Ghost" Execution
+Async Order Chasing: An ultra-responsive execution layer. If a limit order isn't fully filled, the system deploys an asynchronous chaser that dynamically re-anchors to the Best-Bid-Offer (BBO) every 3 seconds.
+
+L2 Liquidity Audit: Millisecond scans of top-100 order book tiers to calculate VWAP slippage, automatically fragmenting large orders to avoid market impact.
+
+⚖️ Mandatory Open Source Policy (GPL-3.0)
+[!CAUTION]
+X-VOID Omega is licensed under GNU GPL v3.0.
+
+This is a Reciprocal License. By utilizing this codebase, you agree to the following:
+
+Share-Alike: If you modify the core logic (Signal Matrix or Risk Models) and provide services to others, you MUST release your full source code under GPL-3.0.
+
+No Proprietary Hijacking: Commercial use is permitted, but stripping the engine for closed-source paid software is strictly prohibited.
+
+Technical Sovereignty: We welcome contributors; we hunt violators.
