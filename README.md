@@ -1,61 +1,60 @@
 <p align="center">
-  <img src="image_0.png" alt="X-VOID OMEGA: Institutional-Grade Crypto Quant System" width="700">
+  <img src="omega_equity.png" alt="X-VOID OMEGA" width="800">
 </p>
 
 <h1 align="center">🚀 X-VOID Omega: Institutional-Grade Crypto Quant System</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Version-9.0_%22The_Fortress%22-0a0a0a.svg?style=for-the-badge&logo=git&logoColor=cyan" alt="Version 9.0">
-  <img src="https://img.shields.io/badge/Python-3.10%2B-fedc0a.svg?style=for-the-badge&logo=python&logoColor=0a0a0a" alt="Python 3.10+">
-  <img src="https://img.shields.io/badge/License-MIT-008000.svg?style=for-the-badge&logo=license&logoColor=white" alt="MIT License">
-  <img src="https://img.shields.io/badge/Status-Production__Ready-00ff00.svg?style=for-the-badge&logo=serverfault&logoColor=0a0a0a" alt="Status">
+  <img src="[https://img.shields.io/badge/Version-9.0_%22The_Fortress%22-0a0a0a.svg?style=for-the-badge&logo=git&logoColor=cyan](https://img.shields.io/badge/Version-9.0_%22The_Fortress%22-0a0a0a.svg?style=for-the-badge&logo=git&logoColor=cyan)" alt="Version 9.0">
+  <img src="[https://img.shields.io/badge/Python-3.10%2B-fedc0a.svg?style=for-the-badge&logo=python&logoColor=0a0a0a](https://img.shields.io/badge/Python-3.10%2B-fedc0a.svg?style=for-the-badge&logo=python&logoColor=0a0a0a)" alt="Python 3.10+">
+  <img src="[https://img.shields.io/badge/License-GPL--3.0-008000.svg?style=for-the-badge&logo=license&logoColor=white](https://img.shields.io/badge/License-GPL--3.0-008000.svg?style=for-the-badge&logo=license&logoColor=white)" alt="GPL-3.0 License">
+  <img src="[https://img.shields.io/badge/Status-Production__Ready-00ff00.svg?style=for-the-badge&logo=serverfault&logoColor=0a0a0a](https://img.shields.io/badge/Status-Production__Ready-00ff00.svg?style=for-the-badge&logo=serverfault&logoColor=0a0a0a)" alt="Status">
 </p>
 
 <p align="center">
-  <strong>X-VOID Omega</strong> 是一套专为中高频波动率捕获而设计的分布式量化交易系统。系统集成了 **SMC (聪明钱概念)**、**CVD 订单流审计**以及 **LLM 异步推理引擎**，实现了从宏观情绪感知到微观亚毫秒执行的完整闭环。
+  <strong>X-VOID Omega</strong> 是一套专为中高频波动率捕获而设计的分布式量化交易系统。系统集成了 <strong>SMC (聪明钱概念)</strong>、<strong>CVD 订单流审计</strong>以及 <strong>多模型异步 AI 推理矩阵</strong>，实现了从宏观情绪感知到微观亚毫秒执行的完整闭环。
 </p>
 
 ---
 
 > [!IMPORTANT]
-> ** 这不是一个简单的炒币脚本。** 这是一个基于 **NumPy 向量化引擎** 的工程级资产管理工具，旨在提供极端的稳定性、对冲功能和 AI 驱动的边界控制。
+> **统帅声明：这不是一个简单的脚本。** 这是一个基于 **NumPy 向量化引擎** 的工程级资产管理工具，旨在提供极端的稳定性、强制对冲功能和 AI 驱动的边界自愈控制。
 
 ## 🏗️ 核心架构图 (Core Architecture)
 
+```mermaid
 graph TD
-    %% 1. Style Definitions
+    %% Style Definitions
     classDef hardware fill:#1a1a1a,stroke:#00f2ff,stroke-width:2px,color:#fff;
     classDef logic fill:#0d0d0d,stroke:#ff00ea,stroke-width:2px,color:#fff;
     classDef ai fill:#000,stroke:#fedc0a,stroke-width:2px,color:#fff;
 
-    %% 2. Node Definitions
-    WS(Edge Gateway <br/>Binance WS/443):::hardware
+    %% Data Layer
+    WS(Binance Websocket <br/>443/TLS):::hardware
     
-    subgraph Core_Engine [Quantitative Processing Core]
-        Vector(Vectorized Tensor Engine <br/>NumPy/C-Extension):::logic
-        SMC[SMC & CVD <br/>Signal Matrix]:::logic
-    end
+    %% Compute Layer
+    Vector(Vectorized NumPy <br/>Parity Engine):::logic
+    SMC[SMC & CVD <br/>Signal Matrix]:::logic
 
-    subgraph Intelligence_Layer [Neural Oversight]
-        AI_Intel{Multi-LLM Hub <br/>Gemini / Claude / R1}:::ai
-    end
+    %% Intelligence Layer
+    AI_Intel{AI Sentinel Hub <br/>Gemini / Claude / R1}:::ai
 
-    subgraph Execution_Layer [Tactical Execution]
-        Risk(Quantitative Risk Armor <br/>ATR / Net Delta):::logic
-        Algo(Async Order Chasing <br/>Ghost Execution):::hardware
-    end
+    %% Risk Layer
+    Risk(Dynamic Risk Armor <br/>ATR / Net Delta):::logic
+    Algo(Order Chasing <br/>Async Execution):::hardware
     
-    Redis[(State Persistence <br/>Redis Data Bus)]:::hardware
-    Dashboard(X-VOID Dashboard <br/>FastAPI / React):::logic
+    %% Persistence
+    Redis[(Redis <br/>High-Speed Bus)]:::hardware
+    Dashboard(X-VOID Dashboard <br/>FastAPI / WebUI):::logic
 
-    %% 3. Strategic Connections
+    %% Connections
     WS ==>|Raw Tensors| Vector
-    Vector -->|Signal Stream| SMC
-    WS -.->|Sentiment Context| AI_Intel
+    Vector -->|Optimized Signals| SMC
+    WS -.->|Sentiment Data| AI_Intel
     SMC -->|Validated Signals| Risk
     AI_Intel -.->|Adaptive Regime| Risk
     Risk ==>|Actionable Orders| Algo
-    Algo -->|Atomic Sync| Redis
+    Algo -->|State Sync| Redis
     Redis --- Dashboard
     Redis -.->|Feedback Loop| WS
 
