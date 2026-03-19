@@ -22,7 +22,10 @@
 
 ## 🏗️ 核心架构图 (Core Architecture)
 
+
 ```mermaid
+
+
 graph TD
     %% Style Definitions
     classDef hardware fill:#1a1a1a,stroke:#00f2ff,stroke-width:2px,color:#fff;
