@@ -190,6 +190,20 @@ L2 Liquidity Audit: Millisecond scans of top-100 order book tiers to calculate V
 
 Every micro-execution and signal fluctuation propagates to the Command Dashboard with sub-5ms latency, ensuring you see the market exactly as the engine does.Write-Ahead Logging (WAL) Ledger Sync: Borrowing mission-critical protection logic from enterprise-grade databases. The moment a sandbox balance or live position is updated, the system triggers a mandatory fsync to both Redis memory and physical disk. This atomic operation ensures that even in the event of a catastrophic server crash, the "Compound Interest" ledger maintains an accounting precision of $10^{-8}$ upon reboot.
 
+# 🤖 X-VOID Omega: AI Engineering Prompts
+
+## 🌐 1. Global Language Conversion (Refactor to EN)
+**Command:** > "Using the `utils/i18n_manager.py` infrastructure, refactor the entire application. Scan all modules in `/core`, `/bot`, `/agents`, and `/ui`. Identify every hardcoded Chinese string and replace it with `lang.get('key_name')`. Maintain a 'Hardcore Wall Street' professional tone for all new English keys. Add `from utils.i18n_manager import lang` to the top of every modified file."
+
+## 🏗️ 2. New Feature Development
+**Command:**
+> "I need to add a new [INSERT FEATURE NAME] module. Ensure it follows the X-VOID Omega architecture: Use Asyncio, implement strict Error Handling, and utilize NumPy vectorization for performance. If the feature involves user feedback, ensure all strings are mapped through `i18n_manager`."
+
+## 🛡️ 3. Security & Risk Audit
+**Command:**
+> "Audit the current `core/risk_manager.py` for 'Black Swan' event resilience. Specifically, verify the '48-hour Circuit Breaker' logic and the 'Global Net Delta' balancing mechanism. Suggest mathematical optimizations to reduce slippage during emergency liquidations."
+
+
 ⚖️ Mandatory Open Source Policy (GPL-3.0)
 [!CAUTION]
 X-VOID Omega is licensed under GNU GPL v3.0.
