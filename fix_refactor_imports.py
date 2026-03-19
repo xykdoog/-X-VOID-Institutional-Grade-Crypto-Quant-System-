@@ -3,28 +3,20 @@ import re
 
 # 定义文件到目录的映射关系
 IMPORT_MAP = {
-    # Core 目录
-    'trading_engine': 'core',
-    'risk_manager': 'core',
-    'execution_algo': 'core',
-    'enhanced_black_swan': 'core',
-    'position_isolation': 'core',
-    'enhanced_mtf_resonance': 'core',
-    # Agents 目录
-    'ai_analyst': 'agents',
-    'ai_analyst_validators': 'agents',
-    'llm_worker': 'agents',
-    'intelligence_hub': 'agents',
-    'ai_emergency_control': 'agents',
-    # Utils 目录
-    'utils': 'utils',
-    'logger_setup': 'utils',
-    'redis_manager': 'utils',
-    'config_redis_functions': 'utils',
-    'network_config': 'utils',
-    'proxy_tunnel': 'utils',
-    # Tests 目录
-    'smc_signal_template': 'tests'
+    # Core 
+    'trading_engine': 'core', 'risk_manager': 'core', 'execution_algo': 'core',
+    'enhanced_black_swan': 'core', 'position_isolation': 'core', 'enhanced_mtf_resonance': 'core',
+    'correlation_engine': 'core', 'correlation_matrix': 'core', 'dlq_worker': 'core',
+    'worker_logic': 'core', 'websocket_manager': 'core', 'api_weight_monitor': 'core',
+    'execution_quality_monitor': 'core', 'monitors': 'core',
+    # Agents
+    'ai_analyst': 'agents', 'ai_analyst_validators': 'agents', 'llm_worker': 'agents',
+    'intelligence_hub': 'agents', 'ai_emergency_control': 'agents',
+    # Bot (新)
+    'bot_callbacks': 'bot', 'bot_handlers': 'bot', 'bot_handlers_additions': 'bot',
+    # Utils
+    'utils': 'utils', 'logger_setup': 'utils', 'redis_manager': 'utils',
+    'config_redis_functions': 'utils', 'network_config': 'utils', 'proxy_tunnel': 'utils'
 }
 
 def fix_imports_in_file(file_path):

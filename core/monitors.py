@@ -29,7 +29,7 @@ import pandas as pd
 from utils.logger_setup import logger
 import config
 from core.execution_algo import execute_liquidity_aware_close, execute_ioc_protected_close
-from dlq_worker import add_to_dlq
+from core.dlq_worker import add_to_dlq
 # ==========================================
 # 🔥 机构级风险精算引擎 (V7.2 Final)
 # ==========================================

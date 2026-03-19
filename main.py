@@ -170,17 +170,17 @@ from utils.utils import (
 from core.trading_engine import trading_engine_loop, sync_benchmark_with_api
 
 # 导入监控系统
-from monitors import (
+from core.monitors import (
     monitor_stop_loss_orders, monitor_account_drawdown,
     monitor_daily_performance, price_sentry_engine, monitor_scalper_positions,
     daily_ai_report_engine, market_regime_detector
 )
 
 # 🔥 V5.0 导入 WebSocket 管理器
-from websocket_manager import get_websocket_manager, set_input_queue
+from core.websocket_manager import get_websocket_manager, set_input_queue
 
 # 导入命令处理器（仅注册函数）
-from bot_handlers import register_handlers
+from bot.bot_handlers import register_handlers
 
 # ==========================================
 # 全局变量
