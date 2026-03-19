@@ -5,6 +5,24 @@
 工业化重构版本 v7.0 - 纯指挥官模式（多进程解耦）
 职责：系统初始化、后台线程管理、轮询控制
 """
+# -*- coding: utf-8 -*-
+"""
+X-VOID Omega: Institutional-Grade Crypto Quant System
+Copyright (C) 2026 xykdoog (nq12841155@gmail.com)
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+"""
 
 # 🔥 Windows 物理套接字劫持补丁（必须在所有 import 之前）
 import asyncio
