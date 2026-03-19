@@ -1,3 +1,8 @@
+![Python Version](https://img.shields.io/badge/python-3.14-blue.svg)
+![License](https://img.shields.io/badge/license-GPL--3.0-green.svg)
+![Market](https://img.shields.io/badge/Market-Crypto-orange.svg)
+![Strategy](https://img.shields.io/badge/Strategy-SMC%20%2B%20CVD-red.svg)
+
 <p align="center">
   <img src="image_0.png" alt="X-VOID OMEGA: Institutional-Grade Crypto Quant System" width="700">
 </p>
